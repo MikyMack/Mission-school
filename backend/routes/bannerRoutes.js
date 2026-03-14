@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bannerController = require('../controllers/bannerController');
-const { upload } = require('../utils/cloudinary');
+const { upload } = require('../utils/multer');
 
 router.post('/',upload.single('banner'), bannerController.createBanner);
 router.get('/', bannerController.getAllBanners);

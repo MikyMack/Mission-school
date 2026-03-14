@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const eventController = require('../controllers/eventController');
-const { upload } = require('../utils/cloudinary');
+const { upload } = require('../utils/multer');
 
 router.post('/',upload.single('events'), eventController.createEvent);
 router.get('/', eventController.getAllEvents);

@@ -5,7 +5,7 @@
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
-    <title>Divine Public School - Admin Dashboard</title>
+    <title>Mission School - Admin Dashboard</title>
 
     <meta name="author" content="trivlogic.com">
 
@@ -50,7 +50,7 @@
                 <div class="section-menu-left">
                     <div class="box-logo">
                         <a href="/admin/admin-dashboard" id="site-logo-inner">
-                            <img style="width:60px;" id="logo_header" alt="" src="/img/devin.png" data-light="/img/devin.png" data-dark="/img/devin.png" >
+                            <img style="width:60px;" id="logo_header" alt="" src="/img/devin.png" data-light="/img/devin.png" data-dark="img/logo.png" >
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-chevron-left"></i>
@@ -71,9 +71,9 @@
                                         </a>
                                     </li>
                                     <li class="menu-item ">
-                                        <a href="/admin/admin-academics" class="menu-item-button">
+                                        <a href="/admin/admin-blogs" class="menu-item-button">
                                             <div class="icon"><i class="icon-file-plus"></i></div>
-                                            <div class="text">Academic Management</div>
+                                            <div class="text">Blog Management</div>
                                         </a>
                                     
                                     </li>
@@ -97,9 +97,9 @@
                                     </li>
                             
                                     <li class="menu-item ">
-                                        <a href="/admin/admin-alumini" class="menu-item-button">
+                                        <a href="/admin/admin-testimonials" class="menu-item-button">
                                             <div class="icon"><i class="fa fa-users"></i></div>
-                                            <div class="text">Alumni Management</div>
+                                            <div class="text">Testimonials Management</div>
                                         </a>
                               
                                     </li>
@@ -170,7 +170,7 @@
                                                     <img src="/img/devin.png" alt="">
                                                 </span>
                                                 <span class="flex flex-column">
-                                                    <span class="body-text text-main-dark">Divine Public School</span>
+                                                    <span class="body-text text-main-dark">Mission School</span>
                                                     <span class="text-tiny">Admin</span>
                                                 </span>
                                             </span>
@@ -349,32 +349,18 @@
                                                 <div class="mb-1">
                                                     <div class="block-legend">
                                                         <div class="dot t3"></div>
-                                                        <div class="text-tiny">Academic Content</div>
+                                                        <div class="text-tiny">Events</div>
                                                     </div>
                                                 </div>
                                                 <div class="flex items-center gap12">
-                                                    <h4><%= academic.length %></h4>
+                                                   
                                                     <div class="box-icon-trending up">
                                                         <i class="icon-trending-up"></i>
                                                         <div class="body-title number text-grey">0.56%</div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div class="mb-1">
-                                                    <div class="block-legend">
-                                                        <div class="dot t5"></div>
-                                                        <div class="text-tiny">Alumni</div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex items-center gap12">
-                                                    <h4><%= alumni.length %></h4>
-                                                    <div class="box-icon-trending up">
-                                                        <i class="icon-trending-up"></i>
-                                                        <div class="body-title number text-grey">0.56%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     
                                     </div>
@@ -391,7 +377,7 @@
                                                 <li class="wg-product">
                                                     <div class="name flex-grow">
                                                         <div class="image">
-                                                            <img src="<%= item.image %>" alt="<%= item.title %>">
+                                                            <img src="/uploads/<%= item.image %>" alt="<%= item.title %>">
                                                         </div>
                                                         <div>
                                                             <div class="title">
@@ -416,7 +402,7 @@
                                                 <li class="wg-product">
                                                     <div class="name flex-grow">
                                                         <div class="image">
-                                                            <img src="<%= item.posterUrl || '/img/default-notice.png' %>" alt="<%= item.title %>">
+                                                            <img src="/uploads/<%= item.posterUrl || '/img/default-notice.png' %>" alt="<%= item.title %>">
                                                         </div>
                                                         <div>
                                                             <div class="title">

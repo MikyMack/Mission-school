@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const noticeController = require('../controllers/noticeController');
-const { upload } = require('../utils/cloudinary');
+const { upload } = require('../utils/multer');
 
 router.post('/',upload.single('notice'), noticeController.createNotice);
 router.get('/', noticeController.getAllNotices);

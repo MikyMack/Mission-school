@@ -4,7 +4,7 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>Divine Public School - Admin Banners</title>
+    <title>Mission School - Admin Banners</title>
 
     <meta name="author" content="themesflat.com">
 
@@ -226,10 +226,10 @@
                 </div>
                 <!-- /preload -->
                 <!-- section-menu-left -->
-                <div class="section-menu-left">
+                    <div class="section-menu-left">
                     <div class="box-logo">
                         <a href="/admin/admin-dashboard" id="site-logo-inner">
-                            <img style="width:60px;" id="logo_header" alt="" src="/img/devin.png" data-light="/img/devin.png" data-dark="/img/devin.png" >
+                            <img style="width:60px;" id="logo_header" alt="" src="/img/devin.png" data-light="/img/devin.png" data-dark="img/logo.png" >
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-chevron-left"></i>
@@ -250,9 +250,9 @@
                                         </a>
                                     </li>
                                     <li class="menu-item ">
-                                        <a href="/admin/admin-academics" class="menu-item-button">
+                                        <a href="/admin/admin-blogs" class="menu-item-button">
                                             <div class="icon"><i class="icon-file-plus"></i></div>
-                                            <div class="text">Academic Management</div>
+                                            <div class="text">Blog Management</div>
                                         </a>
                                     
                                     </li>
@@ -276,9 +276,9 @@
                                     </li>
                             
                                     <li class="menu-item ">
-                                        <a href="/admin/admin-alumini" class="menu-item-button">
+                                        <a href="/admin/admin-testimonials" class="menu-item-button">
                                             <div class="icon"><i class="fa fa-users"></i></div>
-                                            <div class="text">Alumni Management</div>
+                                            <div class="text">Testimonials Management</div>
                                         </a>
                               
                                     </li>
@@ -349,7 +349,7 @@
                                                     <img src="/img/devin.png" alt="">
                                                 </span>
                                                 <span class="flex flex-column">
-                                                    <span class="body-text text-main-dark">Divine Public School</span>
+                                                    <span class="body-text text-main-dark">Mission School</span>
                                                     <span class="text-tiny">Admin</span>
                                                 </span>
                                             </span>
@@ -455,7 +455,7 @@
                                                     <li class="wg-product item-row gap20" id="banner-<%= banner._id %>">
                                                         <div class="name" style="flex: 2;">
                                                             <div class="image">
-                                                                <img src="<%= banner.image %>" alt="<%= banner.title %>">
+                                                                <img src="/uploads/<%= banner.image %>" alt="<%= banner.title %>">
                                                             </div>
                                                         </div>
                                                         <div class="body-text text-main-dark mt-4" style="flex: 2;">
@@ -571,7 +571,7 @@
                                 // Show image preview if exists
                                 const imagePreview = document.getElementById('imagePreview');
                                 if (banner.image) {
-                                    imagePreview.innerHTML = `<img src="${banner.image}" alt="Current Banner" style="max-width: 200px; max-height: 150px;">`;
+                                    imagePreview.innerHTML = `<img src="/uploads/${banner.image}" alt="Current Banner" style="max-width:200px; max-height:150px;">`;
                                 } else {
                                     imagePreview.innerHTML = '';
                                 }
@@ -614,6 +614,8 @@
                                     method: method,
                                     body: formData
                                 });
+                                console.log(response);
+                                
                 
                                 const result = await response.json();
                 

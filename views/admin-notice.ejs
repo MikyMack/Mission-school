@@ -3,7 +3,7 @@
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
-    <title>Divine Public School - Admin Academic Management</title>
+    <title>Mission School - Admin Academic Management</title>
 
     <meta name="author" content="themesflat.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -246,10 +246,10 @@
                 </div>
                 <!-- /preload -->
                 <!-- section-menu-left -->
-                <div class="section-menu-left">
+                    <div class="section-menu-left">
                     <div class="box-logo">
                         <a href="/admin/admin-dashboard" id="site-logo-inner">
-                            <img style="width:60px;" id="logo_header" alt="" src="img/logo.png" data-light="img/logo.png" data-dark="img/logo.png" >
+                            <img style="width:60px;" id="logo_header" alt="" src="/img/devin.png" data-light="/img/devin.png" data-dark="img/logo.png" >
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-chevron-left"></i>
@@ -270,9 +270,9 @@
                                         </a>
                                     </li>
                                     <li class="menu-item ">
-                                        <a href="/admin/admin-academics" class="menu-item-button">
+                                        <a href="/admin/admin-blogs" class="menu-item-button">
                                             <div class="icon"><i class="icon-file-plus"></i></div>
-                                            <div class="text">Academic Management</div>
+                                            <div class="text">Blog Management</div>
                                         </a>
                                     
                                     </li>
@@ -296,9 +296,9 @@
                                     </li>
                             
                                     <li class="menu-item ">
-                                        <a href="/admin/admin-alumini" class="menu-item-button">
+                                        <a href="/admin/admin-testimonials" class="menu-item-button">
                                             <div class="icon"><i class="fa fa-users"></i></div>
-                                            <div class="text">Alumni Management</div>
+                                            <div class="text">Testimonials Management</div>
                                         </a>
                               
                                     </li>
@@ -369,7 +369,7 @@
                                                     <img src="/img/devin.png" alt="">
                                                 </span>
                                                 <span class="flex flex-column">
-                                                    <span class="body-text text-main-dark">Divine Public School</span>
+                                                    <span class="body-text text-main-dark">Mission School</span>
                                                     <span class="text-tiny">Admin</span>
                                                 </span>
                                             </span>
@@ -461,7 +461,7 @@
                                                         <div class="st-card-header">
                                                             <% if (notice.posterUrl) { %>
                                                                 <div class="st-card-icon">
-                                                                    <img src="<%= notice.posterUrl %>" alt="<%= notice.title %>">
+                                                                    <img src="/uploads/<%= notice.posterUrl %>" alt="<%= notice.title %>">
                                                                 </div>
                                                             <% } %>
                                                             <div class="st-card-title">
@@ -588,7 +588,7 @@
                                 // Show image preview if exists
                                 const imagePreview = document.getElementById('imagePreview');
                                 if (notice.posterUrl) {
-                                    imagePreview.innerHTML = `<img src="${notice.posterUrl}" alt="Current Poster" style="max-width: 200px; max-height: 150px;">`;
+                                    imagePreview.innerHTML = `<img src="/uploads/${notice.posterUrl}" alt="Current Poster" style="max-width: 200px; max-height: 150px;">`;
                                 } else {
                                     imagePreview.innerHTML = '';
                                 }

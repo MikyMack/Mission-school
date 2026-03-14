@@ -21,11 +21,11 @@ app.use(
       store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
   })
 );
-
+app.use('/uploads', express.static('uploads'));
 // Routes
 const adminRoutes = require('./routes/adminRoutes');
-const academicRotes = require('./routes/academicRoutes');
-const aluminiRoutes = require('./routes/alumniRoutes');
+const blogRoutes = require('./routes/blogRoutes');
+const testimonialRoutes = require('./routes/testimonialRoutes');
 const bannerRoutes = require('./routes/bannerRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const galleryRoutes = require('./routes/galleryRoutes');
@@ -38,8 +38,8 @@ app.use('/notice', noticeRoutes);
 app.use('/gallery', galleryRoutes);
 app.use('/event', eventRoutes);
 app.use('/banner', bannerRoutes);
-app.use('/alumini', aluminiRoutes);
-app.use('/academic', academicRotes);
+app.use('/testimonial', testimonialRoutes);
+app.use('/blog', blogRoutes);
 
 app.use(async (req, res) => {
   res.status(404).render('error', { title: 'Page Not Found' });
