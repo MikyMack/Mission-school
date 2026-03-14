@@ -1,23 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const Academic = require('../models/Academic');
 const Alumni = require('../models/Alumni');
 const Banner = require('../models/Banner');
 const Event = require('../models/Event');
 const Gallery = require('../models/Gallery');
 const Notice = require('../models/Notice');
+const Blog = require('../models/Blog');
 
 
 
 
 router.get('/', async (req, res) => {
     try {
-        const [banners, events, galleries, notices, academics, alumni] = await Promise.all([
+        const [banners, events, galleries, notices, blogs, alumni] = await Promise.all([
             Banner.find({ isActive: true }).sort({ createdAt: -1 }),
             Event.find({ isActive: true }).sort({ createdAt: -1 }),
             Gallery.find({ isActive: true }).sort({ createdAt: -1 }),
             Notice.find({ isActive: true }).sort({ createdAt: -1 }),
-            Academic.find().sort({ createdAt: -1 }),
+            Blog.find().sort({ createdAt: -1 }),
             Alumni.find().sort({ date: -1 })
         ]);
 
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
             events,
             galleries,
             notices,
-            academics,
+            blogs,
             alumni
         });
     } catch (error) {
@@ -120,45 +120,28 @@ router.get('/blogs', async (req, res) => {
       const page = parseInt(req.query.page) || 1; // Current page
       const limit = 6; // Items per page
   
-      const total = await Academic.countDocuments();
+      const total = await Blog.countDocuments();
       const totalPages = Math.ceil(total / limit);
       const skip = (page - 1) * limit;
   
-      const academics = await Academic.find()
+      const blogs = await Blog.find()
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit);
   
       res.render('blogs', {
-        title: 'Academics',
-        academics,
+        title: 'Blogs',
+        blogs,
         currentPage: page,
         totalPages
       });
   
     } catch (error) {
       console.error(error);
-      res.status(500).send('Error loading academics page data');
+      res.status(500).send('Error loading blogs page data');
     }
   });
-  
-router.get('/academicsDetails/:slug', async (req, res) => {
-    try {
-      const academic = await Academic.findById(req.params.id);
-  
-      if (!academic) {
-        return res.status(404).send('Academic record not found');
-      }
-  
-      res.render('blogDetails', {
-        title: academic.title || 'Academic Details',
-        academic
-      });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Error loading academic details');
-    }
-  });
+
   
 router.get('/contact', async (req, res) => {
     try {

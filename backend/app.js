@@ -24,7 +24,7 @@ app.use(
 app.use('/uploads', express.static('uploads'));
 // Routes
 const adminRoutes = require('./routes/adminRoutes');
-const academicRotes = require('./routes/academicRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 const aluminiRoutes = require('./routes/alumniRoutes');
 const bannerRoutes = require('./routes/bannerRoutes');
 const eventRoutes = require('./routes/eventRoutes');
@@ -39,7 +39,7 @@ app.use('/gallery', galleryRoutes);
 app.use('/event', eventRoutes);
 app.use('/banner', bannerRoutes);
 app.use('/alumini', aluminiRoutes);
-app.use('/academic', academicRotes);
+app.use('/blog', blogRoutes);
 
 app.use(async (req, res) => {
   res.status(404).render('error', { title: 'Page Not Found' });
