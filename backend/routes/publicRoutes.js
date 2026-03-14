@@ -1,24 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const Alumni = require('../models/Alumni');
 const Banner = require('../models/Banner');
 const Event = require('../models/Event');
 const Gallery = require('../models/Gallery');
 const Notice = require('../models/Notice');
 const Blog = require('../models/Blog');
+const Testimonial = require('../models/Testimonial');
 
 
 
 
 router.get('/', async (req, res) => {
     try {
-        const [banners, events, galleries, notices, blogs, alumni] = await Promise.all([
+        const [banners, events, galleries, notices, blogs, testmonials] = await Promise.all([
             Banner.find({ isActive: true }).sort({ createdAt: -1 }),
             Event.find({ isActive: true }).sort({ createdAt: -1 }),
             Gallery.find({ isActive: true }).sort({ createdAt: -1 }),
             Notice.find({ isActive: true }).sort({ createdAt: -1 }),
             Blog.find().sort({ createdAt: -1 }),
-            Alumni.find().sort({ date: -1 })
+            Testimonial.find().sort({ date: -1 })
         ]);
 
         res.render('home', {
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
             galleries,
             notices,
             blogs,
-            alumni
+            testmonials
         });
     } catch (error) {
         console.error(error);

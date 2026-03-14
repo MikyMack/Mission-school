@@ -25,7 +25,7 @@ app.use('/uploads', express.static('uploads'));
 // Routes
 const adminRoutes = require('./routes/adminRoutes');
 const blogRoutes = require('./routes/blogRoutes');
-const aluminiRoutes = require('./routes/alumniRoutes');
+const testimonialRoutes = require('./routes/testimonialRoutes');
 const bannerRoutes = require('./routes/bannerRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const galleryRoutes = require('./routes/galleryRoutes');
@@ -38,7 +38,7 @@ app.use('/notice', noticeRoutes);
 app.use('/gallery', galleryRoutes);
 app.use('/event', eventRoutes);
 app.use('/banner', bannerRoutes);
-app.use('/alumini', aluminiRoutes);
+app.use('/testimonial', testimonialRoutes);
 app.use('/blog', blogRoutes);
 
 app.use(async (req, res) => {
