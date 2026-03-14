@@ -130,7 +130,7 @@
     <div class="widget">
       <div class="vs-widget-about">
         <div class="mb-4">
-          <a href="index.html">
+          <a href="/">
             <img src="/img/school/logo.avif" alt="Mission School" class="logo right-side-logo">
           </a>
         </div>
@@ -256,111 +256,45 @@
   ==============================-->
 <section class="hero-layout1 hero-slider" data-wow-delay="0.25s" aria-hidden="true">
   <div class="hero-slider-wrapper">
+    <% banners.forEach((banner, index) => { %>
+      <div class="hero-slide" style="background-image: url('/uploads/<%= banner.image %>');">
+        <div class="hero-item">
+          <div class="container position-relative z-index">
+            <div class="row">
+              <div class="col-lg-8 position-relative">
+                <div class="hero-content">
+                  <% if (banner.title) { %>
+                    <div class="hero-subtitle wow animate__fadeInUp" data-wow-delay="0.30s">
+                      <%= banner.title %>
+                    </div>
+                  <% } %>
 
-    <!-- Slide 1 -->
-    <div class="hero-slide" style="background-image: url('/img/school/banner-1.jpg');">
-      <div class="hero-item">
-        <div class="container position-relative z-index">
-          <div class="row">
-            <div class="col-lg-8 position-relative">
-              <div class="hero-content">
-                <div class="hero-subtitle wow animate__fadeInUp" data-wow-delay="0.30s">
-                  50 Years of Educational Excellence
+                  <% if (banner.subtitle) { %>
+                    <h1 class="hero-title wow animate__fadeInUp" data-wow-delay="0.50s">
+                      <%= banner.subtitle %>
+                    </h1>
+                  <% } %>
+
+                  <% if (banner.description) { %>
+                    <p class="hero-text wow animate__fadeInUp" data-wow-delay="0.75s">
+                      <%= banner.description %>
+                    </p>
+                  <% } %>
+
+                  <% if (banner.link) { %>
+                    <a class="vs-btn wow animate__fadeInUp" data-wow-delay="0.95s" href="<%= banner.link %>">
+                      Learn More <i class="fa-regular fa-arrow-right"></i>
+                    </a>
+                  <% } %>
+
+                  <span class="dot-shape wow animate__bounceInRight" data-wow-delay="0.70s"></span>
                 </div>
-
-                <h1 class="hero-title wow animate__fadeInUp" data-wow-delay="0.50s">
-                  Predict The Future Of Your <span class="title-highlight">Child</span>
-                </h1>
-
-                <p class="hero-text wow animate__fadeInUp" data-wow-delay="0.75s">
-                  Unlock your child's full potential with the right educational foundation. 
-                  With 50 years of experience and 14 successful educational institutions, 
-                  we have already shaped countless futures. Let us help build your child’s 
-                  journey toward success.
-                </p>
-
-                <a class="vs-btn wow animate__fadeInUp" data-wow-delay="0.95s" href="contact.html">
-                  Contact Now<i class="fa-regular fa-arrow-right"></i>
-                </a>
-
-                <span class="dot-shape wow animate__bounceInRight" data-wow-delay="0.70s"></span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-
-    <!-- Slide 2 -->
-    <div class="hero-slide" style="background-image: url('/img/school/banner-2.jpg');">
-      <div class="hero-item">
-        <div class="container position-relative z-index">
-          <div class="row">
-            <div class="col-lg-8 position-relative">
-              <div class="hero-content">
-                <div class="hero-subtitle wow animate__fadeInUp" data-wow-delay="0.30s">
-                  Innovative Learning Environment
-                </div>
-
-                <h1 class="hero-title wow animate__fadeInUp" data-wow-delay="0.50s">
-                  Building A Strong <span class="title-highlight">Foundation</span>
-                </h1>
-
-                <p class="hero-text wow animate__fadeInUp" data-wow-delay="0.75s">
-                  From Pre-Primary to 5th Grade, we provide a collaborative learning 
-                  environment for children, teachers, and parents. Our integrated 
-                  approach supports creativity, critical thinking, and personal 
-                  growth for every child.
-                </p>
-
-                <a class="vs-btn wow animate__fadeInUp" data-wow-delay="0.95s" href="about.html">
-                  Learn More<i class="fa-regular fa-arrow-right"></i>
-                </a>
-
-                <span class="dot-shape wow animate__bounceInRight" data-wow-delay="0.70s"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Slide 3 -->
-    <div class="hero-slide" style="background-image: url('/img/school/banner-3.jpg');">
-      <div class="hero-item">
-        <div class="container position-relative z-index">
-          <div class="row">
-            <div class="col-lg-8 position-relative">
-              <div class="hero-content">
-                <div class="hero-subtitle wow animate__fadeInUp" data-wow-delay="0.30s">
-                  A Joyful Learning Community
-                </div>
-
-                <h1 class="hero-title wow animate__fadeInUp" data-wow-delay="0.50s">
-                  A Happy Child Creates A <span class="title-highlight">Better World</span>
-                </h1>
-
-                <p class="hero-text wow animate__fadeInUp" data-wow-delay="0.75s">
-                  We nurture children in a positive and caring environment where 
-                  creativity, curiosity, and confidence grow naturally. Together 
-                  with parents and teachers, we prepare children to become 
-                  responsible global citizens.
-                </p>
-
-                <a class="vs-btn wow animate__fadeInUp" data-wow-delay="0.95s" href="contact.html">
-                  Join Us<i class="fa-regular fa-arrow-right"></i>
-                </a>
-
-                <span class="dot-shape wow animate__bounceInRight" data-wow-delay="0.70s"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <% }) %>
   </div>
 
   <!-- Slider Controls -->
@@ -368,8 +302,6 @@
     <button class="hero-slider-prev"><i class="fas fa-chevron-left"></i></button>
     <button class="hero-slider-next"><i class="fas fa-chevron-right"></i></button>
   </div>
-
-
 </section>
   <!-- Counter Area Start -->
 
@@ -421,7 +353,7 @@ Predict the future of your child by creating it!</h2>
                 </div>
               </div>
               <div class="about-inner mb-0 wow animate__fadeInUp" data-wow-delay="0.95s">
-                <a class="vs-btn" href="about.html">About Us <i class="far fa-long-arrow-right"></i></a>
+                <a class="vs-btn" href="/about">About Us <i class="far fa-long-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -549,109 +481,66 @@ Predict the future of your child by creating it!</h2>
 
   <!-- Events Area Start -->
   <section class="events-section space">
-    <div class="container">
-      <div class="row justify-content-center mb-5">
-        <div class="col-xl-8">
-          <div class="title-area text-center animation-style1 title-anime">
-            <span class="sec-subtitle text-theme title-anime__title">
-              <img src="/img/shapes/left-title-shape.svg" alt="shape">
-              Upcoming Events
-              <img src="/img/shapes/right-title-shape.svg" alt="shape">
-            </span>
-            <h2 class="sec-title text-title title-anime__title">
-              Discover Our <span class="title-highlight text-secondary inline">Exciting Events</span>
-            </h2>
-          </div>
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-xl-8">
+        <div class="title-area text-center animation-style1 title-anime">
+          <span class="sec-subtitle text-theme title-anime__title">
+            <img src="/img/shapes/left-title-shape.svg" alt="shape">
+            Upcoming Events
+            <img src="/img/shapes/right-title-shape.svg" alt="shape">
+          </span>
+          <h2 class="sec-title text-title title-anime__title">
+            Discover Our <span class="title-highlight text-secondary inline">Exciting Events</span>
+          </h2>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12">
-          <div class="events-slider vs-carousel wow animate__fadeInUp" data-wow-delay="0.3s" 
-               data-slide-show="3" 
-               data-lg-slide-show="3" 
-               data-md-slide-show="2" 
-               data-sm-slide-show="1" 
-               data-arrows="true">
-
-            <!-- Event Card 1 -->
-            <div class="event-slide">
-              <div class="event-card">
-                <div class="event-image">
-                  <img src="/img/school/hm-img-2.jpg" alt="Sports Day">
-                  <div class="event-date">
-                    <span class="day">15</span>
-                    <span class="month">Mar</span>
-                  </div>
-                </div>
-                <div class="event-content">
-                  <div class="event-meta">
-                    <span><i class="far fa-clock"></i> 9:00 AM - 4:00 PM</span>
-                    <span><i class="fas fa-map-marker-alt"></i> School Ground</span>
-                  </div>
-                  <h3 class="event-title">Annual Sports Day</h3>
-                  <p class="event-description">
-                    Join us for an exciting day of athletic competitions and team spirit. Students showcase their talents in various sports events.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event Card 2 -->
-            <div class="event-slide">
-              <div class="event-card">
-                <div class="event-image">
-                  <img src="/img/school/evnt-1.jpg" alt="Science Exhibition">
-                  <div class="event-date">
-                    <span class="day">22</span>
-                    <span class="month">Mar</span>
-                  </div>
-                </div>
-                <div class="event-content">
-                  <div class="event-meta">
-                    <span><i class="far fa-clock"></i> 10:00 AM - 3:00 PM</span>
-                    <span><i class="fas fa-map-marker-alt"></i> School Hall</span>
-                  </div>
-                  <h3 class="event-title">Science Exhibition</h3>
-                  <p class="event-description">
-                    Explore innovative projects and scientific discoveries created by our talented young scientists and researchers.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event Card 3 -->
-            <div class="event-slide">
-              <div class="event-card">
-                <div class="event-image">
-                  <img src="/img/school/hm-img-2.jpg" alt="Cultural Fest">
-                  <div class="event-date">
-                    <span class="day">28</span>
-                    <span class="month">Mar</span>
-                  </div>
-                </div>
-                <div class="event-content">
-                  <div class="event-meta">
-                    <span><i class="far fa-clock"></i> 5:00 PM - 9:00 PM</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Auditorium</span>
-                  </div>
-                  <h3 class="event-title">Annual Cultural Fest</h3>
-                  <p class="event-description">
-                    Experience a vibrant celebration of music, dance, and art featuring performances by our talented students.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center mt-5">
-        <a href="index.html" class="vs-btn">View All Events <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
-  </section>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="events-slider vs-carousel wow animate__fadeInUp" data-wow-delay="0.3s" 
+             data-slide-show="3" 
+             data-lg-slide-show="3" 
+             data-md-slide-show="2" 
+             data-sm-slide-show="1" 
+             data-arrows="true">
+
+          <% events.forEach(event => { %>
+          <div class="event-slide">
+            <div class="event-card">
+              <div class="event-image">
+                <img src="/uploads/<%= event.image %>" alt="<%= event.title %>">
+                <div class="event-date">
+                  <span class="day"><%= new Date(event.date).getDate() %></span>
+                  <span class="month"><%= new Date(event.date).toLocaleString('default', { month: 'short' }) %></span>
+                </div>
+              </div>
+              <div class="event-content">
+                <div class="event-meta">
+                  <% if(event.time) { %>
+                    <span><i class="far fa-clock"></i> <%= event.time %></span>
+                  <% } %>
+                  <% if(event.eventPlace) { %>
+                    <span><i class="fas fa-map-marker-alt"></i> <%= event.eventPlace %></span>
+                  <% } %>
+                </div>
+                <h3 class="event-title"><%= event.title %></h3>
+                <p class="event-description"><%= event.description %></p>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="/events" class="vs-btn">View All Events <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
   <!-- Events Area End -->
     <!-- Service Area  -->
     <section class="service-layout2 service-space-bottom mt-30">
@@ -672,7 +561,7 @@ Predict the future of your child by creating it!</h2>
          
                   <div class="service-inner">
                     <div class="service-logo">
-                      <a href="service-details.html">
+                      <a href="/service-details.html">
                         <img class="img1" src="/img/school/ser-1.jpg" alt="Service Image">
                         <img class="img2" src="/img/school/ser-1.jpg" alt="Service Image">
                       </a>
@@ -1015,73 +904,26 @@ Predict the future of your child by creating it!</h2>
 
     <div class="row vs-carousel gallery-slide1" data-slide-show="3" data-lg-slide-show="3" data-md-slide-show="2" data-center-mode="true">
 
-      <!-- Gallery 1 -->
+      <% galleries.forEach(gallery => { %>
       <div class="col-xl-4">
         <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
           <div class="gallery-img">
-            <img src="/img/school/gallery-1.jpg" alt="gallery img">
-    
-            <a href="#" class="gallery-tag">Classroom</a>
-            <div class="gallery-content">
-              <h2 class="gallery-title"><a href="#">Joyful Classroom Learning</a></h2>
-              <p class="gallery-text">
-                Capturing moments of curiosity, creativity, and active learning in our classrooms.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+            <img src="/uploads/<%= gallery.image %>" alt="<%= gallery.category %>">
 
-      <!-- Gallery 2 -->
-      <div class="col-xl-4">
-        <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-          <div class="gallery-img">
-            <img src="/img/school/gallery-1.jpg" alt="gallery img">
-    
-            <a href="#" class="gallery-tag">Activities</a>
-            <div class="gallery-content">
-              <h2 class="gallery-title"><a href="#">Creative Student Activities</a></h2>
-              <p class="gallery-text">
-                Students expressing creativity and teamwork through engaging activities and projects.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+            <% if (gallery.category) { %>
+            <a href="#" class="gallery-tag"><%= gallery.category %></a>
+            <% } %>
 
-      <!-- Gallery 3 -->
-      <div class="col-xl-4">
-        <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-          <div class="gallery-img">
-            <img src="/img/school/gallery-1.jpg" alt="gallery img">
-    
-            <a href="#" class="gallery-tag">Events</a>
             <div class="gallery-content">
-              <h2 class="gallery-title"><a href="#">School Celebrations & Events</a></h2>
-              <p class="gallery-text">
-                Memorable moments from school events, cultural programs, and celebrations.
-              </p>
+              <h2 class="gallery-title"><a href="<%= gallery.youtubeLink || '#' %>"><%= gallery.title || gallery.category %></a></h2>
+              <% if (gallery.description) { %>
+              <p class="gallery-text"><%= gallery.description %></p>
+              <% } %>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Gallery 4 -->
-      <div class="col-xl-4">
-        <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-          <div class="gallery-img">
-            <img src="/img/school/gallery-1.jpg" alt="gallery img">
-    
-            <a href="#" class="gallery-tag">Campus</a>
-            <div class="gallery-content">
-              <h2 class="gallery-title"><a href="#">Life at Mission School</a></h2>
-              <p class="gallery-text">
-                A glimpse into the vibrant school environment where students learn and grow.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <% }) %>
 
     </div>
   </div>
@@ -1113,29 +955,30 @@ Predict the future of your child by creating it!</h2>
           data-sm-slide-show="1"
           data-xs-slide-show="1">
 
-          <!-- Testimonial 1 -->
+          <% testmonials.forEach(testimonial => { %>
           <div class="col-xl-6 wow animate__fadeInUp" data-wow-delay="0.25s">
             <div class="testi-style2">
               <div class="author-img">
-                <img class="img1" src="/img/school/dummy.jpg" alt="testimonials">
+                <img class="img1" src="/uploads/<%= testimonial.imageUrl %>" alt="<%= testimonial.name %>">
               </div>
               <div class="testi-content">
                 <div class="star-rating">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+                  <% for(let i=0; i<testimonial.rating; i++) { %>
+                    <i class="fa-solid fa-star"></i>
+                  <% } %>
+                  <% for(let i=testimonial.rating; i<5; i++) { %>
+                    <i class="fa-regular fa-star"></i>
+                  <% } %>
                 </div>
 
                 <p class="testi-text">
-                  "Mission School has truly transformed my child's learning journey. The teachers are caring, and the creative learning environment encourages curiosity and confidence."
+                  "<%= testimonial.content %>"
                 </p>
 
                 <div class="author-inner">
                   <div>
-                    <h4 class="author-name"><a href="#">Anita Thomas</a></h4>
-                    <span class="author-degi">Parent</span>
+                    <h4 class="author-name"><a href="#"><%= testimonial.name %></a></h4>
+                    <span class="author-degi"><%= testimonial.designation %></span>
                   </div>
                   <div class="author-quote">
                     <img src="/img/school/google-icon.webp" alt="quote Icon">
@@ -1156,138 +999,7 @@ Predict the future of your child by creating it!</h2>
               </div>
             </div>
           </div>
-
-          <!-- Testimonial 2 -->
-          <div class="col-xl-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-            <div class="testi-style2">
-              <div class="author-img">
-                <img class="img1" src="/img/school/dummy.jpg" alt="testimonials">
-              </div>
-              <div class="testi-content">
-                <div class="star-rating">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-
-                <p class="testi-text">
-                  "The innovative teaching methods at Mission School help children develop creativity and critical thinking. My child enjoys learning every day."
-                </p>
-
-                <div class="author-inner">
-                  <div>
-                    <h4 class="author-name"><a href="#">Rahul Nair</a></h4>
-                    <span class="author-degi">Parent</span>
-                  </div>
-                  <div class="author-quote">
-                    <img src="/img/school/google-icon.webp" alt="quote Icon">
-                  </div>
-                </div>
-
-                <span class="shape-mockup wow animate__fadeInLeft d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="left: 0px; bottom: 0px;">
-                  <img src="/img/shapes/testi-shape1.png" alt="section shape">
-                </span>
-
-                <span class="shape-mockup wow animate__fadeInRight d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="right: 0px; top: 0px;">
-                  <img src="/img/shapes/testi-shape2.png" alt="section shape">
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Testimonial 3 -->
-          <div class="col-xl-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-            <div class="testi-style2">
-              <div class="author-img">
-                <img class="img1" src="/img/school/dummy.jpg" alt="testimonials">
-              </div>
-              <div class="testi-content">
-                <div class="star-rating">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-
-                <p class="testi-text">
-                  "Mission School focuses not only on academics but also on values and personal growth. It is the perfect place for children to learn and grow."
-                </p>
-
-                <div class="author-inner">
-                  <div>
-                    <h4 class="author-name"><a href="#">Meera Krishnan</a></h4>
-                    <span class="author-degi">Parent</span>
-                  </div>
-                  <div class="author-quote">
-                    <img src="/img/school/google-icon.webp" alt="quote Icon">
-                  </div>
-                </div>
-
-                <span class="shape-mockup wow animate__fadeInLeft d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="left: 0px; bottom: 0px;">
-                  <img src="/img/shapes/testi-shape1.png" alt="section shape">
-                </span>
-
-                <span class="shape-mockup wow animate__fadeInRight d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="right: 0px; top: 0px;">
-                  <img src="/img/shapes/testi-shape2.png" alt="section shape">
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Testimonial 4 -->
-          <div class="col-xl-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-            <div class="testi-style2">
-              <div class="author-img">
-                <img class="img1" src="/img/school/dummy.jpg" alt="testimonials">
-              </div>
-              <div class="testi-content">
-                <div class="star-rating">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-
-                <p class="testi-text">
-                  "The supportive teachers and joyful learning environment at Mission School make it a wonderful place for children to build confidence and lifelong skills."
-                </p>
-
-                <div class="author-inner">
-                  <div>
-                    <h4 class="author-name"><a href="#">Suresh Kumar</a></h4>
-                    <span class="author-degi">Parent</span>
-                  </div>
-                  <div class="author-quote">
-                    <img src="/img/school/google-icon.webp" alt="quote Icon">
-                  </div>
-                </div>
-
-                <span class="shape-mockup wow animate__fadeInLeft d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="left: 0px; bottom: 0px;">
-                  <img src="/img/shapes/testi-shape1.png" alt="section shape">
-                </span>
-
-                <span class="shape-mockup wow animate__fadeInRight d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="right: 0px; top: 0px;">
-                  <img src="/img/shapes/testi-shape2.png" alt="section shape">
-                </span>
-              </div>
-            </div>
-          </div>
+          <% }) %>
 
         </div>
       </div>
@@ -1298,7 +1010,7 @@ Predict the future of your child by creating it!</h2>
   <div class="position-relative" >
 
     <!-- Blog area Start -->
-  <section class="blog-layout1 space-extra-bottom">
+<section class="blog-layout1 space-extra-bottom">
   <div class="container">
     <div class="row align-items-end">
       <div class="col-xl-6 col-lg-7 col-auto">
@@ -1334,149 +1046,30 @@ Predict the future of your child by creating it!</h2>
       data-md-slide-show="2"
       data-center-mode="true">
 
-      <!-- Blog 1 -->
+      <% blogs.forEach(blog => { %>
       <div class="col-lg-4 col-md-6">
         <div class="vs-blog blog-style1">
           <div class="blog-img">
-            <a href="blog-details.html">
-              <img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image">
+            <a href="/blog/<%= blog.slug %>">
+              <img class="blog-img__img" src="/uploads/<%= blog.imageUrl %>" alt="<%= blog.title %>">
             </a>
-            <span class="blog-date">16 March, 2025</span>
+            <span class="blog-date"><%= new Date(blog.createdAt).toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' }) %></span>
           </div>
           <div class="blog-content">
             <div class="blog-meta">
-              <a href="#"><i class="fa-solid fa-user"></i> By Admin</a>
-              <a href="#"><i class="fa-solid fa-comments"></i> 2 Comments</a>
+              <a href="#"><i class="fa-solid fa-user"></i> By <%= blog.author %></a>
+              <!-- You can add comments count if stored -->
             </div>
             <h2 class="blog-title">
-              <a href="blog-details.html">The Importance of Joyful Learning in Early Education</a>
+              <a href="/blog/<%= blog.slug %>"><%= blog.title %></a>
             </h2>
-            <a class="vs-btn" href="blog-details.html">
+            <a class="vs-btn" href="/blog/<%= blog.slug %>">
               Read More <i class="fa-regular fa-arrow-right"></i>
             </a>
           </div>
         </div>
       </div>
-
-      <!-- Blog 2 -->
-      <div class="col-lg-4 col-md-6">
-        <div class="vs-blog blog-style1">
-          <div class="blog-img">
-            <a href="blog-details.html">
-              <img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image">
-            </a>
-            <span class="blog-date">12 March, 2025</span>
-          </div>
-          <div class="blog-content">
-            <div class="blog-meta">
-              <a href="#"><i class="fa-solid fa-user"></i> By Admin</a>
-              <a href="#"><i class="fa-solid fa-comments"></i> 2 Comments</a>
-            </div>
-            <h2 class="blog-title">
-              <a href="blog-details.html">How Creative Activities Improve Children's Learning</a>
-            </h2>
-            <a class="vs-btn" href="blog-details.html">
-              Read More <i class="fa-regular fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Blog 3 -->
-      <div class="col-lg-4 col-md-6">
-        <div class="vs-blog blog-style1">
-          <div class="blog-img">
-            <a href="blog-details.html">
-              <img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image">
-            </a>
-            <span class="blog-date">10 March, 2025</span>
-          </div>
-          <div class="blog-content">
-            <div class="blog-meta">
-              <a href="#"><i class="fa-solid fa-user"></i> By Admin</a>
-              <a href="#"><i class="fa-solid fa-comments"></i> 2 Comments</a>
-            </div>
-            <h2 class="blog-title">
-              <a href="blog-details.html">Building Confidence and Leadership in Young Students</a>
-            </h2>
-            <a class="vs-btn" href="blog-details.html">
-              Read More <i class="fa-regular fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Blog 4 -->
-      <div class="col-lg-4 col-md-6">
-        <div class="vs-blog blog-style1">
-          <div class="blog-img">
-            <a href="blog-details.html">
-              <img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image">
-            </a>
-            <span class="blog-date">05 March, 2025</span>
-          </div>
-          <div class="blog-content">
-            <div class="blog-meta">
-              <a href="#"><i class="fa-solid fa-user"></i> By Admin</a>
-              <a href="#"><i class="fa-solid fa-comments"></i> 2 Comments</a>
-            </div>
-            <h2 class="blog-title">
-              <a href="blog-details.html">Why Value-Based Education Matters for Children</a>
-            </h2>
-            <a class="vs-btn" href="blog-details.html">
-              Read More <i class="fa-regular fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Blog 5 -->
-      <div class="col-lg-4 col-md-6">
-        <div class="vs-blog blog-style1">
-          <div class="blog-img">
-            <a href="blog-details.html">
-              <img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image">
-            </a>
-            <span class="blog-date">02 March, 2025</span>
-          </div>
-          <div class="blog-content">
-            <div class="blog-meta">
-              <a href="#"><i class="fa-solid fa-user"></i> By Admin</a>
-              <a href="#"><i class="fa-solid fa-comments"></i> 2 Comments</a>
-            </div>
-            <h2 class="blog-title">
-              <a href="blog-details.html">Encouraging Curiosity and Creativity in Children</a>
-            </h2>
-            <a class="vs-btn" href="blog-details.html">
-              Read More <i class="fa-regular fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Blog 6 -->
-      <div class="col-lg-4 col-md-6">
-        <div class="vs-blog blog-style1">
-          <div class="blog-img">
-            <a href="blog-details.html">
-              <img class="blog-img__img" src="/img/blog/blog-img-1-6.jpg" alt="Blog Image">
-            </a>
-            <span class="blog-date">28 February, 2025</span>
-          </div>
-          <div class="blog-content">
-            <div class="blog-meta">
-              <a href="#"><i class="fa-solid fa-user"></i> By Admin</a>
-              <a href="#"><i class="fa-solid fa-comments"></i> 2 Comments</a>
-            </div>
-            <h2 class="blog-title">
-              <a href="blog-details.html">How Mission School Prepares Students for the Future</a>
-            </h2>
-            <a class="vs-btn" href="blog-details.html">
-              Read More <i class="fa-regular fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
+      <% }) %>
 
     </div>
   </div>
@@ -1580,7 +1173,7 @@ Predict the future of your child by creating it!</h2>
         <p class="copyright-text">Copyright <i class="fal fa-copyright"></i>
           <script>
             document.write(new Date().getFullYear())
-          </script> <a href="index.html">The Mission School</a>
+          </script> <a href="/">The Mission School</a>
           All Rights Reserved |Developed By  <a href="https://trivlogic.com/">Trivlogic Private Limited</a>
         </p>
       </div>
@@ -1609,27 +1202,27 @@ Predict the future of your child by creating it!</h2>
 
 <div class="mobile-bottom-nav">
 
-  <a href="index.html" class="mobile-nav-item active">
+  <a href="/" class="mobile-nav-item active">
     <i class="fas fa-home"></i>
     <span>Home</span>
   </a>
 
-  <a href="about.html" class="mobile-nav-item">
+  <a href="/about" class="mobile-nav-item">
     <i class="fas fa-school"></i>
     <span>About</span>
   </a>
 
-  <a href="events.html" class="mobile-nav-item">
+  <a href="/events" class="mobile-nav-item">
     <i class="fas fa-calendar-alt"></i>
     <span>Events</span>
   </a>
 
-  <a href="gallery.html" class="mobile-nav-item">
+  <a href="/gallery" class="mobile-nav-item">
     <i class="fas fa-images"></i>
     <span>Gallery</span>
   </a>
 
-  <a href="contact.html" class="mobile-nav-item">
+  <a href="/contact" class="mobile-nav-item">
     <i class="fas fa-phone"></i>
     <span>Contact</span>
   </a>
