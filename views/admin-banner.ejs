@@ -455,7 +455,7 @@
                                                     <li class="wg-product item-row gap20" id="banner-<%= banner._id %>">
                                                         <div class="name" style="flex: 2;">
                                                             <div class="image">
-                                                                <img src="<%= banner.image %>" alt="<%= banner.title %>">
+                                                                <img src="/uploads/<%= banner.image %>" alt="<%= banner.title %>">
                                                             </div>
                                                         </div>
                                                         <div class="body-text text-main-dark mt-4" style="flex: 2;">
@@ -571,7 +571,7 @@
                                 // Show image preview if exists
                                 const imagePreview = document.getElementById('imagePreview');
                                 if (banner.image) {
-                                    imagePreview.innerHTML = `<img src="${banner.image}" alt="Current Banner" style="max-width: 200px; max-height: 150px;">`;
+                                    imagePreview.innerHTML = `<img src="/uploads/${banner.image}" alt="Current Banner" style="max-width:200px; max-height:150px;">`;
                                 } else {
                                     imagePreview.innerHTML = '';
                                 }
@@ -614,6 +614,8 @@
                                     method: method,
                                     body: formData
                                 });
+                                console.log(response);
+                                
                 
                                 const result = await response.json();
                 

@@ -461,7 +461,7 @@
                                                         <div class="st-card-header">
                                                             <% if (notice.posterUrl) { %>
                                                                 <div class="st-card-icon">
-                                                                    <img src="<%= notice.posterUrl %>" alt="<%= notice.title %>">
+                                                                    <img src="/uploads/<%= notice.posterUrl %>" alt="<%= notice.title %>">
                                                                 </div>
                                                             <% } %>
                                                             <div class="st-card-title">
@@ -588,7 +588,7 @@
                                 // Show image preview if exists
                                 const imagePreview = document.getElementById('imagePreview');
                                 if (notice.posterUrl) {
-                                    imagePreview.innerHTML = `<img src="${notice.posterUrl}" alt="Current Poster" style="max-width: 200px; max-height: 150px;">`;
+                                    imagePreview.innerHTML = `<img src="/uploads/${notice.posterUrl}" alt="Current Poster" style="max-width: 200px; max-height: 150px;">`;
                                 } else {
                                     imagePreview.innerHTML = '';
                                 }

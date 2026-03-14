@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const galleryController = require('../controllers/galleryController');
-const { upload } = require('../utils/cloudinary');
+const { upload } = require('../utils/multer');
 
 router.post('/',upload.single('galleryImage'), galleryController.createGallery);
 router.get('/', galleryController.getAllGallery);

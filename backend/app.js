@@ -21,7 +21,7 @@ app.use(
       store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
   })
 );
-
+app.use('/uploads', express.static('uploads'));
 // Routes
 const adminRoutes = require('./routes/adminRoutes');
 const academicRotes = require('./routes/academicRoutes');

@@ -507,11 +507,11 @@
                                                         <div class="st-card-header">
                                                             <div class="st-card-icon">
                                                                 <% if (event.image) { %>
-                                                                    <img src="<%= event.image %>" alt="<%= event.title %>">
+                                                                    <img src="/uploads/<%= event.image %>" alt="<%= event.title %>">
                                                                 <% } else { %>
                                                                     <img src="/img/about/abt-1.jpg" alt="Default Event Image">
                                                                 <% } %>
-                                                            </div>
+                                                            </div>                                                         
                                                             <div class="st-card-title">
                                                                 <h3><%= event.title %></h3>
                                                                 <div class="st-card-subtitle">
@@ -676,7 +676,7 @@
                                 // Show image preview if exists
                                 const imagePreview = document.getElementById('imagePreview');
                                 if (event.image) {
-                                    imagePreview.innerHTML = `<img src="${event.image}" alt="Current Image" style="max-width: 200px; max-height: 150px;">`;
+                                    imagePreview.innerHTML = `<img src="/uploads/${event.image}" alt="Current Image" style="max-width: 200px; max-height: 150px;">`;
                                 } else {
                                     imagePreview.innerHTML = '';
                                 }

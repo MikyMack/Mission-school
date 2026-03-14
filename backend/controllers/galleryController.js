@@ -1,22 +1,20 @@
 const Gallery = require('../models/Gallery');
-const cloudinary = require('cloudinary').v2;
-
-// Configure Cloudinary
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-});
+const fs = require('fs');
+const path = require('path');
 
 
-const deleteImageFromCloudinary = async (imageUrl) => {
-  if (!imageUrl) return;
-  
+const deleteImageFromUploads = (imageName) => {
+  if (!imageName) return;
+
   try {
-      const publicId = imageUrl.split('/').pop().split('.')[0];
-      await cloudinary.uploader.destroy(publicId);
+    const filePath = path.join(__dirname, '..', 'uploads', imageName);
+
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+
   } catch (error) {
-      console.error('Error deleting image from Cloudinary:', error);
+    console.error('Error deleting image:', error);
   }
 };
 
@@ -31,7 +29,7 @@ exports.createGallery = async (req, res) => {
       const gallery = new Gallery({
           category,
           youtubeLink,
-          image: req.file.path
+          image: req.file.filename
       });
 
       await gallery.save();
@@ -93,9 +91,9 @@ exports.updateGallery = async (req, res) => {
       };
 
       if (req.file) {
-          // Delete old image from Cloudinary
-          await deleteImageFromCloudinary(existingGallery.image);
-          updateData.image = req.file.path;
+          // Delete old image from uploads
+          deleteImageFromUploads(existingGallery.image);
+updateData.image = req.file.filename;
       }
 
       const updatedGallery = await Gallery.findByIdAndUpdate(
@@ -120,8 +118,8 @@ exports.deleteGallery = async (req, res) => {
           return res.status(404).json({ message: 'Gallery item not found' });
       }
 
-      // Delete associated image from Cloudinary
-      await deleteImageFromCloudinary(galleryItem.image);
+      // Delete associated image from uploads
+     deleteImageFromUploads(galleryItem.image);
 
       // Delete the gallery item from database
       await Gallery.findByIdAndDelete(galleryId);

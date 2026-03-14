@@ -496,7 +496,7 @@
                                                     <div class="st-data-card" id="gallery-<%= item._id %>">
                                                         <div class="st-card-header">
                                                             <div class="st-card-icon">
-                                                                <img src="<%= item.image %>" alt="<%= item.category %>">
+                                                                <img src="/uploads/<%= item.image %>" alt="<%= item.category %>">
                                                             </div>
                                                             <div class="st-card-title">
                                                                 <h3>
@@ -635,7 +635,7 @@
                                 // Show image preview if exists
                                 const imagePreview = document.getElementById('imagePreview');
                                 if (gallery.image) {
-                                    imagePreview.innerHTML = `<img src="${gallery.image}" alt="Current Image" style="max-width: 200px; max-height: 150px;">`;
+                                   imagePreview.innerHTML = `<img src="/uploads/${gallery.image}" alt="Current Image" style="max-width: 200px; max-height: 150px;">`;
                                 } else {
                                     imagePreview.innerHTML = '';
                                 }
