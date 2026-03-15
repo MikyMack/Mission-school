@@ -40,7 +40,14 @@
   <!-- Theme Custom CSS -->
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
+<style>
+  .blog-details-img{
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+</style>
 <body>
   <!--[if lte IE 9]>
     	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -264,97 +271,64 @@
   <!--==============================
     Blog Area
 ==============================-->
-  <section class="vs-blog-wrapper blog-details space-top space-extra-bottom">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-12 col-lg-12">
-          <div class="vs-blog blog-single">
-            <div class="blog-img mb-60  wow animate__fadeInUp" data-wow-delay="0.35s">
-              <img class="blog-details-img" src="/img/school/blog-1.jpg" alt="blog image">
-              <div class="blog-tag">The Importance of Joyful Learning in Early Education</div>
-              <div class="blog-meta">
-                <a href="blog.html"><i class="fas fa-calendar-alt"></i>16 March, 2025</a>
-                <a href="blog.html"><i class="fa-solid fa-user"></i>By Admin</a>
-                <a href="blog.html"><i class="fas fa-folder-open"></i>Education</a>
-              </div>
+ <section class="vs-blog-wrapper blog-details space-top space-extra-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12">
+        <div class="vs-blog blog-single">
+
+          <div class="blog-img mb-60 wow animate__fadeInUp" data-wow-delay="0.35s">
+
+            <img class="blog-details-img" src="/uploads/<%= blog.imageUrl %>" alt="<%= blog.title %>">
+
+            <div class="blog-tag"><%= blog.title %></div>
+
+            <div class="blog-meta">
+              <a href="#"><i class="fas fa-calendar-alt"></i>
+                <%= new Date(blog.createdAt).toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'}) %>
+              </a>
+
+              <a href="#"><i class="fa-solid fa-user"></i>By <%= blog.author %></a>
+
+              <a href="#"><i class="fas fa-folder-open"></i>Education</a>
             </div>
-            <div class="blog-content">
-              <h2 class="blog-title  wow animate__fadeInUp" data-wow-delay="0.35s">The Importance of Joyful Learning in Early Education</h2>
-              <p class="blog-text  wow animate__fadeInUp" data-wow-delay="0.35s">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, sequi obcaecati. Dignissimos veritatis, ex temporibus suscipit aspernatur numquam voluptas deleniti excepturi atque. Magnam blanditiis beatae, ducimus impedit iure consequuntur debitis?
-                1. Focus on Your Riding Posture
-              </p>
-              <p class="blog-text  wow animate__fadeInUp" data-wow-delay="0.35s">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor velit tempora maxime vero quidem. Libero, asperiores iusto maxime animi aliquid aliquam aspernatur velit quasi minima. Voluptate sapiente officiis beatae ea.
-              </p>
-              <div class="row mb-3  wow animate__fadeInUp" data-wow-delay="0.35s">
-                <div class="col-lg-6">
-                  <div class="list-style1">
-                    <ul class="list-unstyled">
-                      <li><i class="fa-solid fa-circle-check"></i>Focus on Your Riding Posture</li>
-                      <li><i class="fa-solid fa-circle-check"></i>Work on Your Leg Position</li>
-                      <li><i class="fa-solid fa-circle-check"></i>Improve Your Communication With Horse</li>
-                      <li><i class="fa-solid fa-circle-check"></i>Strengthen Your Core Muscles</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="list-style1">
-                    <ul class="list-unstyled">
-                      <li><i class="fa-solid fa-circle-check"></i>Practice Regularly with a Plan</li>
-                      <li><i class="fa-solid fa-circle-check"></i>Take Riding Lessons with Qualified Instructor</li>
-                      <li><i class="fa-solid fa-circle-check"></i>Make Better Understand Horse Behavior</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-          
-              <p class="blog-text  wow animate__fadeInUp" data-wow-delay="0.35s">
-                Your legs play a crucial role in communicating with your horse. Ensure your legs are in constant,
-                gentle contact with your horse's sides. This helps with stability and gives clearer cues to your horse.
-                Riding is all about effective communication. Spend time understanding your horse’s body language and signals.
-                Use clear and consistent aids to guide your horse, and always reward good behavior with a gentle pat or verbal praise.
-              </p>
-              <blockquote class="vs-quote  wow animate__fadeInUp" data-wow-delay="0.35s">
-                <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat eveniet ad optio harum at id laborum aut? Fugit mollitia dolorem deserunt, alias saepe iure quam blanditiis cum eaque incidunt similique!"</p>
-                <cite>Rodja Heartmann</cite>
-                <span class="quote-icon"><img src="/img/icons/quote-Icon.svg" alt="icon"></span>
-              </blockquote>
-              <p class="blog-text mb-30  wow animate__fadeInUp" data-wow-delay="0.35s">
-                Riding is a dialogue between you and your horse. Focus on giving clear, consistent cues with your hands,
-                legs, and voice. Building trust with your horse is essential for a smoother, more responsive ride. A strong
-                core is crucial for maintaining stability and control while riding. Include core exercises, like planks and
-                crunches, in your fitness routine to support your riding posture.
-              </p>
-         
-              <p class="blog-text  wow animate__fadeInUp" data-wow-delay="0.35s">
-                Having specific objectives can accelerate your progress. Whether it's mastering a new gait or
-                improving your jumping technique, set achievable goals and track your progress. Even the best
-                riders benefit from a fresh perspective. A qualified instructor can help you identify areas for
-                improvement, refine your techniques, and break bad habits. A great rider understands not only the
-                mechanics of riding but also the psychology of horses. Learn to read your horse’s body language,
-                moods, and reactions to create a harmonious partnership.
-              </p>
-              <div class="share-links  wow animate__fadeInUp" data-wow-delay="0.35s">
-                <div class="row align-items-center">
-                  <div class="col-xl-6 col-lg-auto">
-                    <div class="tagcloud">
-                      <span class="share-links-title">Tags:</span>
-                      <a href="blog.html">Horse</a>
-                      <a href="blog.html">Riding</a>
-                      <a href="blog.html">Care</a>
-                    </div>
-                  </div>
-             
-                </div>
-              </div>
-         
-           
-            </div>
+
           </div>
+
+          <div class="blog-content">
+
+            <h2 class="blog-title wow animate__fadeInUp" data-wow-delay="0.35s">
+              <%= blog.title %>
+            </h2>
+
+            <div class="blog-text wow animate__fadeInUp" data-wow-delay="0.35s">
+              <%- blog.content %>
+            </div>
+
+            <div class="share-links wow animate__fadeInUp" data-wow-delay="0.35s">
+              <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-auto">
+                  <div class="tagcloud">
+                    <span class="share-links-title">Tags:</span>
+
+                    <% if(blog.metaKeywords){ %>
+                      <% blog.metaKeywords.forEach(tag => { %>
+                        <a href="#"><%= tag %></a>
+                      <% }) %>
+                    <% } %>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
- 
       </div>
     </div>
-  </section>
+  </div>
+</section>
   <!--==============================
     Blog Area End
     ==============================-->

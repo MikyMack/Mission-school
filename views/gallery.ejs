@@ -273,137 +273,94 @@
         </div>
       </div>
       <div class="row gy-30 mb-30">
-        <div class="col-xl-4 col-lg-6 col-md-6">
-          <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-            <div class="gallery-img">
-              <img src="/img/school/gallery-1.jpg" alt="gallery img">
 
-              <a href="portfolio-details.html" class="gallery-tag">Classroom</a>
-              <div class="gallery-content">
-                <h2 class="gallery-title"><a href="portfolio-details.html">Joyful Classroom Learning</a></h2>
-                <p class="gallery-text">  Capturing moments of curiosity, creativity, and active learning in our classrooms.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      <div class="col-xl-4 col-lg-6 col-md-6">
-          <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-            <div class="gallery-img">
-              <img src="/img/school/gallery-1.jpg" alt="gallery img">
+<% if (gallery && gallery.length > 0) { %>
 
-              <a href="portfolio-details.html" class="gallery-tag">Classroom</a>
-              <div class="gallery-content">
-                <h2 class="gallery-title"><a href="portfolio-details.html">Joyful Classroom Learning</a></h2>
-                <p class="gallery-text">  Capturing moments of curiosity, creativity, and active learning in our classrooms.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-6 col-md-6">
-          <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-            <div class="gallery-img">
-              <img src="/img/school/gallery-1.jpg" alt="gallery img">
+  <% gallery.forEach(item => { %>
 
-              <a href="portfolio-details.html" class="gallery-tag">Classroom</a>
-              <div class="gallery-content">
-                <h2 class="gallery-title"><a href="portfolio-details.html">Joyful Classroom Learning</a></h2>
-                <p class="gallery-text">  Capturing moments of curiosity, creativity, and active learning in our classrooms.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-    <div class="col-xl-4 col-lg-6 col-md-6">
-          <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-            <div class="gallery-img">
-              <img src="/img/school/gallery-1.jpg" alt="gallery img">
+  <div class="col-xl-4 col-lg-6 col-md-6">
 
-              <a href="portfolio-details.html" class="gallery-tag">Classroom</a>
-              <div class="gallery-content">
-                <h2 class="gallery-title"><a href="portfolio-details.html">Joyful Classroom Learning</a></h2>
-                <p class="gallery-text">  Capturing moments of curiosity, creativity, and active learning in our classrooms.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-       <div class="col-xl-4 col-lg-6 col-md-6">
-          <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-            <div class="gallery-img">
-              <img src="/img/school/gallery-1.jpg" alt="gallery img">
+    <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
 
-              <a href="portfolio-details.html" class="gallery-tag">Classroom</a>
-              <div class="gallery-content">
-                <h2 class="gallery-title"><a href="portfolio-details.html">Joyful Classroom Learning</a></h2>
-                <p class="gallery-text">  Capturing moments of curiosity, creativity, and active learning in our classrooms.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-         <div class="col-xl-4 col-lg-6 col-md-6">
-          <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-            <div class="gallery-img">
-              <img src="/img/school/gallery-1.jpg" alt="gallery img">
+      <div class="gallery-img">
 
-              <a href="portfolio-details.html" class="gallery-tag">Classroom</a>
-              <div class="gallery-content">
-                <h2 class="gallery-title"><a href="portfolio-details.html">Joyful Classroom Learning</a></h2>
-                <p class="gallery-text">  Capturing moments of curiosity, creativity, and active learning in our classrooms.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-       <div class="col-xl-4 col-lg-6 col-md-6">
-          <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-            <div class="gallery-img">
-              <img src="/img/school/gallery-1.jpg" alt="gallery img">
+        <img 
+          src="/uploads/<%= item.image %>" 
+          alt="<%= item.category || 'Gallery Image' %>"
+        >
 
-              <a href="portfolio-details.html" class="gallery-tag">Classroom</a>
-              <div class="gallery-content">
-                <h2 class="gallery-title"><a href="portfolio-details.html">Joyful Classroom Learning</a></h2>
-                <p class="gallery-text">  Capturing moments of curiosity, creativity, and active learning in our classrooms.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-6 col-md-6">
-          <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-            <div class="gallery-img">
-              <img src="/img/school/gallery-1.jpg" alt="gallery img">
+        <% if (item.category) { %>
+          <a href="#" class="gallery-tag"><%= item.category %></a>
+        <% } %>
 
-              <a href="portfolio-details.html" class="gallery-tag">Classroom</a>
-              <div class="gallery-content">
-                <h2 class="gallery-title"><a href="portfolio-details.html">Joyful Classroom Learning</a></h2>
-                <p class="gallery-text">  Capturing moments of curiosity, creativity, and active learning in our classrooms.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-    <div class="col-xl-4 col-lg-6 col-md-6">
-          <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
-            <div class="gallery-img">
-              <img src="/img/school/gallery-1.jpg" alt="gallery img">
+        <div class="gallery-content">
 
-              <a href="portfolio-details.html" class="gallery-tag">Classroom</a>
-              <div class="gallery-content">
-                <h2 class="gallery-title"><a href="portfolio-details.html">Joyful Classroom Learning</a></h2>
-                <p class="gallery-text">  Capturing moments of curiosity, creativity, and active learning in our classrooms.</p>
-              </div>
-            </div>
-          </div>
+          <h2 class="gallery-title">
+            <%= item.category || 'School Gallery' %>
+          </h2>
+
         </div>
+
       </div>
+
+    </div>
+
+  </div>
+
+  <% }) %>
+
+<% } else { %>
+
+<div class="col-12 text-center">
+  <p>No gallery items available</p>
+</div>
+
+<% } %>
+
+</div>
+      <% if (totalPages > 1) { %>
+
       <div class="row justify-content-center wow animate__fadeInUp" data-wow-delay="0.95s">
-        <div class="col-auto">
-          <div class="vs-pagination"><a href="#" class="pagi-btn"><i class="fa-solid fa-arrow-left"></i></a>
-            <ul>
-              <li><a href="#" class="active">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">16</a></li>
-            </ul><a href="#" class="pagi-btn active"><i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
+
+      <div class="col-auto">
+
+      <div class="vs-pagination">
+
+          <% if(currentPage > 1){ %>
+              <a href="/gallery?page=<%= currentPage-1 %>" class="pagi-btn">
+                  <i class="fa-solid fa-arrow-left"></i>
+              </a>
+          <% } %>
+
+          <ul>
+
+          <% for(let i=1;i<=totalPages;i++){ %>
+
+              <li>
+                  <a 
+                      href="/gallery?page=<%= i %>" 
+                      class="<%= currentPage === i ? 'active' : '' %>"
+                  >
+                      <%= i %>
+                  </a>
+              </li>
+
+          <% } %>
+
+          </ul>
+
+          <% if(currentPage < totalPages){ %>
+              <a href="/gallery?page=<%= currentPage+1 %>" class="pagi-btn active">
+                  <i class="fa-solid fa-arrow-right"></i>
+              </a>
+          <% } %>
+
       </div>
+
+      </div>
+      </div>
+
+      <% } %>
     </div>
   </section>
   <!-- Gallery area End -->

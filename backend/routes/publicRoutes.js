@@ -37,7 +37,8 @@ router.get('/', async (req, res) => {
 });
 router.get('/about', async (req, res) => {
     try {
-        res.render('about', { title: 'About us'});
+        const testmonials = await Testimonial.find().sort({ date: -1 })
+        res.render('about', { title: 'About us',testmonials});        
     } catch (error) {
         console.error(error);
         res.status(500).send('Error loading about page data');
@@ -141,7 +142,25 @@ router.get('/blogs', async (req, res) => {
       res.status(500).send('Error loading blogs page data');
     }
   });
+router.get('/blog/:slug', async (req, res) => {
+  try {
 
+    const blog = await Blog.findOne({ slug: req.params.slug }).lean();
+
+    if (!blog) {
+      return res.status(404).send("Blog not found");
+    }
+
+    res.render('blogDetails', {
+      title: blog.metaTitle || blog.title,
+      blog
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error loading blog details");
+  }
+});
   
 router.get('/contact', async (req, res) => {
     try {
@@ -161,7 +180,8 @@ router.get('/unesco', async (req, res) => {
 });
 router.get('/quality-education', async (req, res) => {
     try {
-        res.render('quality-education', { title: 'quality-education'});
+        const testimonials = await Testimonial.find().sort({ date: -1 })
+        res.render('quality-education', { title: 'quality-education',testimonials});
     } catch (error) {
         console.error(error);
         res.status(500).send('Error loading contact page data');

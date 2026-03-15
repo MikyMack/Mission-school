@@ -929,83 +929,83 @@ Predict the future of your child by creating it!</h2>
   </div>
 </section>
     <!-- Gallery area End -->
-         <!-- testimonials area Start -->
+    <!-- testimonials area Start -->
   <section style="margin-top:5rem!important;" class="testimonial-layout2 space ">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-6 col-lg-7 col-auto">
-        <div class="title-area text-center mt-n1 animation-style1 title-anime">
-          <span class="sec-subtitle text-theme title-anime__title">
-            <img src="/img/shapes/left-title-shape.svg" alt="shape">Testimonials
-            <img src="/img/shapes/right-title-shape.svg" alt="shape">
-          </span>
-          <h2 class="sec-title text-title title-anime__title">
-            What Parents Say About <span class="title-higlight text-secondary inline">Mission School</span>
-          </h2>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-7 col-auto">
+          <div class="title-area text-center mt-n1 animation-style1 title-anime">
+            <span class="sec-subtitle text-theme title-anime__title">
+              <img src="/img/shapes/left-title-shape.svg" alt="shape">Testimonials
+              <img src="/img/shapes/right-title-shape.svg" alt="shape">
+            </span>
+            <h2 class="sec-title text-title title-anime__title">
+              What Parents Say About <span class="title-higlight text-secondary inline">Mission School</span>
+            </h2>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row gx-2">
-      <div class="testi-body position-relative">
-        <div class="row vs-carousel testi-carousel"
-          data-slide-show="3"
-          data-lg-slide-show="2"
-          data-md-slide-show="2"
-          data-sm-slide-show="1"
-          data-xs-slide-show="1">
+      <div class="row gx-2">
+        <div class="testi-body position-relative">
+          <div class="row vs-carousel testi-carousel"
+            data-slide-show="3"
+            data-lg-slide-show="2"
+            data-md-slide-show="2"
+            data-sm-slide-show="1"
+            data-xs-slide-show="1">
 
-          <% testmonials.forEach(testimonial => { %>
-          <div class="col-xl-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-            <div class="testi-style2">
-              <div class="author-img">
-                <img class="img1" src="/uploads/<%= testimonial.imageUrl %>" alt="<%= testimonial.name %>">
-              </div>
-              <div class="testi-content">
-                <div class="star-rating">
-                  <% for(let i=0; i<testimonial.rating; i++) { %>
-                    <i class="fa-solid fa-star"></i>
-                  <% } %>
-                  <% for(let i=testimonial.rating; i<5; i++) { %>
-                    <i class="fa-regular fa-star"></i>
-                  <% } %>
+            <% testmonials.forEach(testimonial => { %>
+            <div class="col-xl-6 wow animate__fadeInUp" data-wow-delay="0.25s">
+              <div class="testi-style2">
+                <div class="author-img">
+                  <img class="img1" src="/uploads/<%= testimonial.imageUrl %>" alt="<%= testimonial.name %>">
                 </div>
-
-                <p class="testi-text">
-                  "<%= testimonial.content %>"
-                </p>
-
-                <div class="author-inner">
-                  <div>
-                    <h4 class="author-name"><a href="#"><%= testimonial.name %></a></h4>
-                    <span class="author-degi"><%= testimonial.designation %></span>
+                <div class="testi-content">
+                  <div class="star-rating">
+                    <% for(let i=0; i<testimonial.rating; i++) { %>
+                      <i class="fa-solid fa-star"></i>
+                    <% } %>
+                    <% for(let i=testimonial.rating; i<5; i++) { %>
+                      <i class="fa-regular fa-star"></i>
+                    <% } %>
                   </div>
-                  <div class="author-quote">
-                    <img src="/img/school/google-icon.webp" alt="quote Icon">
+
+                  <p class="testi-text">
+                    "<%= testimonial.content %>"
+                  </p>
+
+                  <div class="author-inner">
+                    <div>
+                      <h4 class="author-name"><a href="#"><%= testimonial.name %></a></h4>
+                      <span class="author-degi"><%= testimonial.designation %></span>
+                    </div>
+                    <div class="author-quote">
+                      <img src="/img/school/google-icon.webp" alt="quote Icon">
+                    </div>
                   </div>
+
+                  <span class="shape-mockup wow animate__fadeInLeft d-xxl-block d-none"
+                    data-wow-delay="0.80s"
+                    style="left: 0px; bottom: 0px;">
+                    <img src="/img/shapes/testi-shape1.png" alt="section shape">
+                  </span>
+
+                  <span class="shape-mockup wow animate__fadeInRight d-xxl-block d-none"
+                    data-wow-delay="0.80s"
+                    style="right: 0px; top: 0px;">
+                    <img src="/img/shapes/testi-shape2.png" alt="section shape">
+                  </span>
                 </div>
-
-                <span class="shape-mockup wow animate__fadeInLeft d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="left: 0px; bottom: 0px;">
-                  <img src="/img/shapes/testi-shape1.png" alt="section shape">
-                </span>
-
-                <span class="shape-mockup wow animate__fadeInRight d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="right: 0px; top: 0px;">
-                  <img src="/img/shapes/testi-shape2.png" alt="section shape">
-                </span>
               </div>
             </div>
-          </div>
-          <% }) %>
+            <% }) %>
 
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
     <!-- testimonials area End -->
   <div class="position-relative" >
 

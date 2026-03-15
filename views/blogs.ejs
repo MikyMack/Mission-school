@@ -268,182 +268,104 @@
     <div class="container">
   
       <div class="row">
+
+      <% if (blogs && blogs.length > 0) { %>
+
+        <% blogs.forEach(blog => { %>
+
         <div class="col-lg-4 col-md-6 wow animate__fadeInUp" data-wow-delay="0.25s">
+
           <div class="vs-blog blog-style1">
+
             <div class="blog-img">
-              <a href="blog-details.html"><img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image"></a>
-              <span class="blog-date">16 March, 2025</span>
+
+              <a href="/blog/<%= blog.slug %>">
+                <img class="blog-img__img" src="/uploads/<%= blog.imageUrl %>" alt="<%= blog.title %>">
+              </a>
+
+              <span class="blog-date">
+                <%= new Date(blog.createdAt).toLocaleDateString('en-GB', { 
+                    day: '2-digit', 
+                    month: 'long', 
+                    year: 'numeric' 
+                }) %>
+              </span>
+
             </div>
+
             <div class="blog-content text-center">
+
               <div class="blog-meta">
-                <a href="blog.html"><i class="fa-solid fa-user"></i>By Admin</a>
-                
+                <a href="#"><i class="fa-solid fa-user"></i>By <%= blog.author %></a>
               </div>
+
               <h2 class="blog-title">
-                <a href="blog-details.html">The Importance of Joyful Learning in Early Education</a>
+                <a href="/blog/<%= blog.slug %>"><%= blog.title %></a>
               </h2>
-              <a class="vs-btn" href="blog-details.html">Read More<i class="fa-regular fa-arrow-right"></i></a>
+
+              <a class="vs-btn" href="/blog/<%= blog.slug %>">
+                Read More <i class="fa-regular fa-arrow-right"></i>
+              </a>
+
             </div>
+
           </div>
+
         </div>
-          <div class="col-lg-4 col-md-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-          <div class="vs-blog blog-style1">
-            <div class="blog-img">
-              <a href="blog-details.html"><img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image"></a>
-              <span class="blog-date">16 March, 2025</span>
-            </div>
-            <div class="blog-content text-center">
-              <div class="blog-meta">
-                <a href="blog.html"><i class="fa-solid fa-user"></i>By Admin</a>
-                
-              </div>
-              <h2 class="blog-title">
-                <a href="blog-details.html">The Importance of Joyful Learning in Early Education</a>
-              </h2>
-              <a class="vs-btn" href="blog-details.html">Read More<i class="fa-regular fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-           <div class="col-lg-4 col-md-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-          <div class="vs-blog blog-style1">
-            <div class="blog-img">
-              <a href="blog-details.html"><img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image"></a>
-              <span class="blog-date">16 March, 2025</span>
-            </div>
-            <div class="blog-content text-center">
-              <div class="blog-meta">
-                <a href="blog.html"><i class="fa-solid fa-user"></i>By Admin</a>
-                
-              </div>
-              <h2 class="blog-title">
-                <a href="blog-details.html">The Importance of Joyful Learning in Early Education</a>
-              </h2>
-              <a class="vs-btn" href="blog-details.html">Read More<i class="fa-regular fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-          <div class="col-lg-4 col-md-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-          <div class="vs-blog blog-style1">
-            <div class="blog-img">
-              <a href="blog-details.html"><img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image"></a>
-              <span class="blog-date">16 March, 2025</span>
-            </div>
-            <div class="blog-content text-center">
-              <div class="blog-meta">
-                <a href="blog.html"><i class="fa-solid fa-user"></i>By Admin</a>
-                
-              </div>
-              <h2 class="blog-title">
-                <a href="blog-details.html">The Importance of Joyful Learning in Early Education</a>
-              </h2>
-              <a class="vs-btn" href="blog-details.html">Read More<i class="fa-regular fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-         <div class="col-lg-4 col-md-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-          <div class="vs-blog blog-style1">
-            <div class="blog-img">
-              <a href="blog-details.html"><img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image"></a>
-              <span class="blog-date">16 March, 2025</span>
-            </div>
-            <div class="blog-content text-center">
-              <div class="blog-meta">
-                <a href="blog.html"><i class="fa-solid fa-user"></i>By Admin</a>
-                
-              </div>
-              <h2 class="blog-title">
-                <a href="blog-details.html">The Importance of Joyful Learning in Early Education</a>
-              </h2>
-              <a class="vs-btn" href="blog-details.html">Read More<i class="fa-regular fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-          <div class="col-lg-4 col-md-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-          <div class="vs-blog blog-style1">
-            <div class="blog-img">
-              <a href="blog-details.html"><img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image"></a>
-              <span class="blog-date">16 March, 2025</span>
-            </div>
-            <div class="blog-content text-center">
-              <div class="blog-meta">
-                <a href="blog.html"><i class="fa-solid fa-user"></i>By Admin</a>
-                
-              </div>
-              <h2 class="blog-title">
-                <a href="blog-details.html">The Importance of Joyful Learning in Early Education</a>
-              </h2>
-              <a class="vs-btn" href="blog-details.html">Read More<i class="fa-regular fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-          <div class="vs-blog blog-style1">
-            <div class="blog-img">
-              <a href="blog-details.html"><img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image"></a>
-              <span class="blog-date">16 March, 2025</span>
-            </div>
-            <div class="blog-content text-center">
-              <div class="blog-meta">
-                <a href="blog.html"><i class="fa-solid fa-user"></i>By Admin</a>
-                
-              </div>
-              <h2 class="blog-title">
-                <a href="blog-details.html">The Importance of Joyful Learning in Early Education</a>
-              </h2>
-              <a class="vs-btn" href="blog-details.html">Read More<i class="fa-regular fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-          <div class="col-lg-4 col-md-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-          <div class="vs-blog blog-style1">
-            <div class="blog-img">
-              <a href="blog-details.html"><img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image"></a>
-              <span class="blog-date">16 March, 2025</span>
-            </div>
-            <div class="blog-content text-center">
-              <div class="blog-meta">
-                <a href="blog.html"><i class="fa-solid fa-user"></i>By Admin</a>
-                
-              </div>
-              <h2 class="blog-title">
-                <a href="blog-details.html">The Importance of Joyful Learning in Early Education</a>
-              </h2>
-              <a class="vs-btn" href="blog-details.html">Read More<i class="fa-regular fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-         <div class="col-lg-4 col-md-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-          <div class="vs-blog blog-style1">
-            <div class="blog-img">
-              <a href="blog-details.html"><img class="blog-img__img" src="/img/school/blog-1.jpg" alt="Blog Image"></a>
-              <span class="blog-date">16 March, 2025</span>
-            </div>
-            <div class="blog-content text-center">
-              <div class="blog-meta">
-                <a href="blog.html"><i class="fa-solid fa-user"></i>By Admin</a>
-                
-              </div>
-              <h2 class="blog-title">
-                <a href="blog-details.html">The Importance of Joyful Learning in Early Education</a>
-              </h2>
-              <a class="vs-btn" href="blog-details.html">Read More<i class="fa-regular fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
+
+        <% }) %>
+
+      <% } else { %>
+
+      <div class="col-12 text-center">
+        <p>No blogs available</p>
       </div>
+
+      <% } %>
+
+      </div>
+      <% if (totalPages > 1) { %>
+
       <div class="row justify-content-center wow animate__fadeInUp" data-wow-delay="0.95s">
-        <div class="col-auto">
-          <div class="vs-pagination"><a href="#" class="pagi-btn"><i class="fa-solid fa-arrow-left"></i></a>
-            <ul>
-              <li><a href="#" class="active">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">16</a></li>
-            </ul><a href="#" class="pagi-btn active"><i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
+      <div class="col-auto">
+
+      <div class="vs-pagination">
+
+        <% if(currentPage > 1){ %>
+        <a href="/blogs?page=<%= currentPage-1 %>" class="pagi-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <% } %>
+
+        <ul>
+
+        <% for(let i=1;i<=totalPages;i++){ %>
+
+          <li>
+            <a 
+              href="/blogs?page=<%= i %>" 
+              class="<%= currentPage === i ? 'active' : '' %>"
+            >
+              <%= i %>
+            </a>
+          </li>
+
+        <% } %>
+
+        </ul>
+
+        <% if(currentPage < totalPages){ %>
+        <a href="/blogs?page=<%= currentPage+1 %>" class="pagi-btn active">
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <% } %>
+
       </div>
+
+      </div>
+      </div>
+
+      <% } %>
     </div>
   </section>
   <!--==============================

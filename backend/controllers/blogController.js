@@ -127,29 +127,28 @@ exports.getAllBlogs = async (req, res) => {
 ================================ */
 
 exports.getBlogById = async (req, res) => {
+  console.log("Inside fn");
+  
   try {
 
-    const blog = await Blog.findById(req.params.id);
+    const id = req.params.id;
+    console.log("Requested ID:", id);
+
+    const blog = await Blog.findById(id);
+
+    console.log("DB result:", blog);
 
     if (!blog) {
-      return res.status(404).json({
-        message: "Blog not found"
-      });
+      return res.status(404).json({ message: "Blog not found" });
     }
 
     res.json(blog);
 
   } catch (error) {
-
     console.error(error);
-
-    res.status(500).json({
-      message: "Failed to fetch blog",
-      error: error.message
-    });
+    res.status(500).json({ message: "Server error" });
   }
 };
-
 
 /* ================================
    Update Blog

@@ -586,7 +586,7 @@
 
                         const blogId = document.getElementById('blogId').value;
 
-                        const url = blogId ? `/blog/${blogId}` : `/blog`;
+                        const url = blogId ? `/api/blog/${blogId}` : `/api/blog`;
                         const method = blogId ? 'PUT' : 'POST';
 
                         try {
@@ -620,14 +620,16 @@
 
                         try {
 
-                            const response = await fetch(`/blog/${id}`);
-                            const blog = await response.json();
+
+                            const response = await fetch(`/api/blog/${id}`);
+                            const data = await response.json();
+
 
                             if (!response.ok) {
                                 throw new Error(blog.message || 'Failed to fetch blog');
                             }
 
-                            openModal(blog);
+                            openModal(data);
 
                         } catch (error) {
 
@@ -661,7 +663,7 @@
 
                         try {
 
-                            const response = await fetch(`/blog/${id}`, {
+                            const response = await fetch(`/api/blog/${id}`, {
                                 method: 'DELETE'
                             });
 

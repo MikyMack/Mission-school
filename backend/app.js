@@ -33,13 +33,14 @@ const noticeRoutes = require('./routes/noticeRoutes');
 const publicRoutes = require('./routes/publicRoutes');
 
 app.use('/admin', adminRoutes);
-app.use('/', publicRoutes);
 app.use('/notice', noticeRoutes);
 app.use('/gallery', galleryRoutes);
 app.use('/event', eventRoutes);
 app.use('/banner', bannerRoutes);
 app.use('/testimonial', testimonialRoutes);
-app.use('/blog', blogRoutes);
+app.use('/api/blog', blogRoutes);
+app.use('/', publicRoutes);
+
 
 app.use(async (req, res) => {
   res.status(404).render('error', { title: 'Page Not Found' });
