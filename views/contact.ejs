@@ -124,7 +124,7 @@
     <div class="widget">
       <div class="vs-widget-about">
         <div class="mb-4">
-          <a href="index.html">
+          <a href="/">
             <img src="/img/school/logo.avif" alt="Mission School" class="logo right-side-logo">
           </a>
         </div>
@@ -257,7 +257,7 @@
         <h1 class="breadcumb-title">Contact Us</h1>
         <div class="breadcumb-menu-wrap">
           <div class="breadcumb-menu">
-            <span><a href="index.html">Home</a></span>
+            <span><a href="/">Home</a></span>
             <span>Contact Us</span>
           </div>
         </div>
@@ -295,25 +295,22 @@
           </p>
         </div>
 
-        <form class="form-style1 ajax-contact wow animate__fadeInUp"
-          data-wow-delay="0.45s"
-          action="mail.php"
-          method="post">
+        <form id="contactForm" class="form-style1 animate__fadeInUp">
 
           <div class="row gx-20">
 
             <div class="col-md-6 form-group">
-              <input class="form-control" type="text" name="first-name" placeholder="Parent First Name">
+              <input class="form-control" type="text" name="first-name" placeholder="Parent First Name" required>
               <i class="fas fa-user"></i>
             </div>
 
             <div class="col-md-6 form-group">
-              <input class="form-control" type="text" name="last-name" placeholder="Parent Last Name">
+              <input class="form-control" type="text" name="last-name" placeholder="Parent Last Name" required>
               <i class="fas fa-user"></i>
             </div>
 
             <div class="col-md-6 form-group">
-              <input class="form-control" type="email" name="email" placeholder="Email Address">
+              <input class="form-control" type="email" name="email" placeholder="Email Address" required>
               <i class="fas fa-envelope"></i>
             </div>
 
@@ -501,7 +498,7 @@
         <p class="copyright-text">Copyright <i class="fal fa-copyright"></i>
           <script>
             document.write(new Date().getFullYear())
-          </script> <a href="index.html">The Mission School</a>
+          </script> <a href="/">The Mission School</a>
           All Rights Reserved |Developed By  <a href="https://trivlogic.com/">Trivlogic Private Limited</a>
         </p>
       </div>
@@ -529,27 +526,27 @@
 
 <div class="mobile-bottom-nav">
 
-  <a href="index.html" class="mobile-nav-item ">
+  <a href="/" class="mobile-nav-item active">
     <i class="fas fa-home"></i>
     <span>Home</span>
   </a>
 
-  <a href="about.html" class="mobile-nav-item">
+  <a href="/about" class="mobile-nav-item">
     <i class="fas fa-school"></i>
     <span>About</span>
   </a>
 
-  <a href="events.html" class="mobile-nav-item">
+  <a href="/events" class="mobile-nav-item">
     <i class="fas fa-calendar-alt"></i>
     <span>Events</span>
   </a>
 
-  <a href="gallery.html" class="mobile-nav-item">
+  <a href="/gallery" class="mobile-nav-item">
     <i class="fas fa-images"></i>
     <span>Gallery</span>
   </a>
 
-  <a href="contact.html" class="mobile-nav-item active">
+  <a href="/contact" class="mobile-nav-item">
     <i class="fas fa-phone"></i>
     <span>Contact</span>
   </a>
@@ -588,6 +585,35 @@
   <script src="/js/jquery.nice-select.min.js"></script>
   <!-- Main Js File -->
   <script src="/js/main.js"></script>
+
+  <!-- Contact Form -->
+   <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+        e.preventDefault();
+
+        const firstName = document.querySelector('[name="first-name"]').value;
+        const lastName = document.querySelector('[name="last-name"]').value;
+        const email = document.querySelector('[name="email"]').value;
+        const inquiry = document.querySelector('[name="inquiry"]').value;
+        const message = document.querySelector('[name="message"]').value;
+
+        const whatsappMessage =
+    `New Inquiry from Website
+
+    Parent Name: ${firstName} ${lastName}
+    Email: ${email}
+    Inquiry Type: ${inquiry}
+
+    Message:
+    ${message}`;
+
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+
+        const whatsappURL = `https://wa.me/918904788233?text=${encodedMessage}`;
+
+        window.open(whatsappURL, "_blank");
+    });
+    </script>
 </body>
 
 </html>

@@ -121,7 +121,7 @@
     <div class="widget">
       <div class="vs-widget-about">
         <div class="mb-4">
-          <a href="index.html">
+          <a href="/">
             <img src="/img/school/logo.avif" alt="Mission School" class="logo right-side-logo">
           </a>
         </div>
@@ -254,7 +254,7 @@
         <h1 class="breadcumb-title">International Quality Education</h1>
         <div class="breadcumb-menu-wrap">
           <div class="breadcumb-menu">
-            <span><a href="index.html">Home</a></span>
+            <span><a href="/">Home</a></span>
             <span>About Us</span>
           </div>
         </div>
@@ -321,7 +321,7 @@
                         </div>
 
                         <!-- CTA Button -->
-                        <a class="premium-btn" href="contact.html">
+                        <a class="premium-btn" href="/contact">
                             Contact Us
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -386,8 +386,8 @@
           Our innovative education model blends cutting-edge technology with personalized learning, ensuring that each student's unique strengths and needs are met. By fostering creativity, critical thinking, and collaboration, we prepare students for success in an ever-evolving world.
         </p>
         <div class="edu-hero__cta-row">
-          <a href="school-programs.html" class="edu-btn--primary">Explore Programs</a>
-          <a href="contact.html" class="edu-btn--ghost">Contact Us</a>
+          <a href="/our-programs" class="edu-btn--primary">Explore Programs</a>
+          <a href="/contact" class="edu-btn--ghost">Contact Us</a>
         </div>
       </div>
 
@@ -468,12 +468,12 @@ We are committed to preparing children as global citizens by fostering an unders
               <img src="/img/shapes/dot-shape.png" alt="shape">
             </div>
           </div>
-        </div>
-
-
- 
+        </div> 
   </section>
-  <section class="testimonial-layout2 space">
+
+
+        <!-- testimonials area Start -->
+<section style="margin-top:5rem!important;" class="testimonial-layout2 space ">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-6 col-lg-7 col-auto">
@@ -497,30 +497,31 @@ We are committed to preparing children as global citizens by fostering an unders
           data-md-slide-show="2"
           data-sm-slide-show="1"
           data-xs-slide-show="1">
-
-          <!-- Testimonial 1 -->
+<% if (testimonials && testimonials.length) { %>
+          <% testimonials.forEach(testimonial => { %>
           <div class="col-xl-6 wow animate__fadeInUp" data-wow-delay="0.25s">
             <div class="testi-style2">
               <div class="author-img">
-                <img class="img1" src="/img/school/dummy.jpg" alt="testimonials">
+                <img class="img1" src="/uploads/<%= testimonial.imageUrl %>" alt="<%= testimonial.name %>">
               </div>
               <div class="testi-content">
                 <div class="star-rating">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+                  <% for(let i=0; i<testimonial.rating; i++) { %>
+                    <i class="fa-solid fa-star"></i>
+                  <% } %>
+                  <% for(let i=testimonial.rating; i<5; i++) { %>
+                    <i class="fa-regular fa-star"></i>
+                  <% } %>
                 </div>
 
                 <p class="testi-text">
-                  "Mission School has truly transformed my child's learning journey. The teachers are caring, and the creative learning environment encourages curiosity and confidence."
+                  "<%= testimonial.content %>"
                 </p>
 
                 <div class="author-inner">
                   <div>
-                    <h4 class="author-name"><a href="#">Anita Thomas</a></h4>
-                    <span class="author-degi">Parent</span>
+                    <h4 class="author-name"><a href="#"><%= testimonial.name %></a></h4>
+                    <span class="author-degi"><%= testimonial.designation %></span>
                   </div>
                   <div class="author-quote">
                     <img src="/img/school/google-icon.webp" alt="quote Icon">
@@ -541,144 +542,17 @@ We are committed to preparing children as global citizens by fostering an unders
               </div>
             </div>
           </div>
-
-          <!-- Testimonial 2 -->
-          <div class="col-xl-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-            <div class="testi-style2">
-              <div class="author-img">
-                <img class="img1" src="/img/school/dummy.jpg" alt="testimonials">
-              </div>
-              <div class="testi-content">
-                <div class="star-rating">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-
-                <p class="testi-text">
-                  "The innovative teaching methods at Mission School help children develop creativity and critical thinking. My child enjoys learning every day."
-                </p>
-
-                <div class="author-inner">
-                  <div>
-                    <h4 class="author-name"><a href="#">Rahul Nair</a></h4>
-                    <span class="author-degi">Parent</span>
-                  </div>
-                  <div class="author-quote">
-                    <img src="/img/school/google-icon.webp" alt="quote Icon">
-                  </div>
-                </div>
-
-                <span class="shape-mockup wow animate__fadeInLeft d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="left: 0px; bottom: 0px;">
-                  <img src="/img/shapes/testi-shape1.png" alt="section shape">
-                </span>
-
-                <span class="shape-mockup wow animate__fadeInRight d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="right: 0px; top: 0px;">
-                  <img src="/img/shapes/testi-shape2.png" alt="section shape">
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Testimonial 3 -->
-          <div class="col-xl-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-            <div class="testi-style2">
-              <div class="author-img">
-                <img class="img1" src="/img/school/dummy.jpg" alt="testimonials">
-              </div>
-              <div class="testi-content">
-                <div class="star-rating">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-
-                <p class="testi-text">
-                  "Mission School focuses not only on academics but also on values and personal growth. It is the perfect place for children to learn and grow."
-                </p>
-
-                <div class="author-inner">
-                  <div>
-                    <h4 class="author-name"><a href="#">Meera Krishnan</a></h4>
-                    <span class="author-degi">Parent</span>
-                  </div>
-                  <div class="author-quote">
-                    <img src="/img/school/google-icon.webp" alt="quote Icon">
-                  </div>
-                </div>
-
-                <span class="shape-mockup wow animate__fadeInLeft d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="left: 0px; bottom: 0px;">
-                  <img src="/img/shapes/testi-shape1.png" alt="section shape">
-                </span>
-
-                <span class="shape-mockup wow animate__fadeInRight d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="right: 0px; top: 0px;">
-                  <img src="/img/shapes/testi-shape2.png" alt="section shape">
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Testimonial 4 -->
-          <div class="col-xl-6 wow animate__fadeInUp" data-wow-delay="0.25s">
-            <div class="testi-style2">
-              <div class="author-img">
-                <img class="img1" src="/img/school/dummy.jpg" alt="testimonials">
-              </div>
-              <div class="testi-content">
-                <div class="star-rating">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-
-                <p class="testi-text">
-                  "The supportive teachers and joyful learning environment at Mission School make it a wonderful place for children to build confidence and lifelong skills."
-                </p>
-
-                <div class="author-inner">
-                  <div>
-                    <h4 class="author-name"><a href="#">Suresh Kumar</a></h4>
-                    <span class="author-degi">Parent</span>
-                  </div>
-                  <div class="author-quote">
-                    <img src="/img/school/google-icon.webp" alt="quote Icon">
-                  </div>
-                </div>
-
-                <span class="shape-mockup wow animate__fadeInLeft d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="left: 0px; bottom: 0px;">
-                  <img src="/img/shapes/testi-shape1.png" alt="section shape">
-                </span>
-
-                <span class="shape-mockup wow animate__fadeInRight d-xxl-block d-none"
-                  data-wow-delay="0.80s"
-                  style="right: 0px; top: 0px;">
-                  <img src="/img/shapes/testi-shape2.png" alt="section shape">
-                </span>
-              </div>
-            </div>
-          </div>
+          <% }) %>
+          <% } else { %>
+  <p>No testimonials found.</p>
+<% } %>
 
         </div>
       </div>
     </div>
   </div>
 </section>
+    <!-- testimonials area End -->
 <!--==============================
 	  Footer Area
 	============================== -->
@@ -775,7 +649,7 @@ We are committed to preparing children as global citizens by fostering an unders
         <p class="copyright-text">Copyright <i class="fal fa-copyright"></i>
           <script>
             document.write(new Date().getFullYear())
-          </script> <a href="index.html">The Mission School</a>
+          </script> <a href="/">The Mission School</a>
           All Rights Reserved |Developed By  <a href="https://trivlogic.com/">Trivlogic Private Limited</a>
         </p>
       </div>
@@ -804,27 +678,27 @@ We are committed to preparing children as global citizens by fostering an unders
 
 <div class="mobile-bottom-nav">
 
-  <a href="index.html" class="mobile-nav-item ">
+  <a href="/" class="mobile-nav-item active">
     <i class="fas fa-home"></i>
     <span>Home</span>
   </a>
 
-  <a href="about.html" class="mobile-nav-item active">
+  <a href="/about" class="mobile-nav-item">
     <i class="fas fa-school"></i>
     <span>About</span>
   </a>
 
-  <a href="events.html" class="mobile-nav-item">
+  <a href="/events" class="mobile-nav-item">
     <i class="fas fa-calendar-alt"></i>
     <span>Events</span>
   </a>
 
-  <a href="gallery.html" class="mobile-nav-item">
+  <a href="/gallery" class="mobile-nav-item">
     <i class="fas fa-images"></i>
     <span>Gallery</span>
   </a>
 
-  <a href="contact.html" class="mobile-nav-item">
+  <a href="/contact" class="mobile-nav-item">
     <i class="fas fa-phone"></i>
     <span>Contact</span>
   </a>

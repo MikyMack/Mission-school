@@ -30,16 +30,19 @@ const bannerRoutes = require('./routes/bannerRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const galleryRoutes = require('./routes/galleryRoutes');
 const noticeRoutes = require('./routes/noticeRoutes');
+const admissionRoutes = require("./routes/admissionRoutes");
 const publicRoutes = require('./routes/publicRoutes');
 
 app.use('/admin', adminRoutes);
-app.use('/', publicRoutes);
 app.use('/notice', noticeRoutes);
 app.use('/gallery', galleryRoutes);
 app.use('/event', eventRoutes);
 app.use('/banner', bannerRoutes);
 app.use('/testimonial', testimonialRoutes);
-app.use('/blog', blogRoutes);
+app.use('/api/blog', blogRoutes);
+app.use("/admission", admissionRoutes);
+app.use('/', publicRoutes);
+
 
 app.use(async (req, res) => {
   res.status(404).render('error', { title: 'Page Not Found' });

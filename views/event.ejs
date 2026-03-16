@@ -121,7 +121,7 @@
     <div class="widget">
       <div class="vs-widget-about">
         <div class="mb-4">
-          <a href="index.html">
+          <a href="/">
             <img src="/img/school/logo.avif" alt="Mission School" class="logo right-side-logo">
           </a>
         </div>
@@ -254,7 +254,7 @@
         <h1 class="breadcumb-title">Events</h1>
         <div class="breadcumb-menu-wrap">
           <div class="breadcumb-menu">
-            <span><a href="index.html">Home</a></span>
+            <span><a href="/">Home</a></span>
             <span>Events</span>
           </div>
         </div>
@@ -281,159 +281,124 @@
       </div>
 
       <div class="row g-4">
-        <!-- Event Card 1 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="event-card">
-            <div class="event-image">
-              <img src="/img/school/hm-img-2.jpg" alt="Sports Day">
-              <div class="event-date">
-                <span class="day">15</span>
-                <span class="month">Mar</span>
-              </div>
-            </div>
-            <div class="event-content">
-              <div class="event-meta">
-                <span><i class="far fa-clock"></i> 9:00 AM - 4:00 PM</span>
-                <span><i class="fas fa-map-marker-alt"></i> School Ground</span>
-              </div>
-              <h3 class="event-title">Annual Sports Day</h3>
-              <p class="event-description">
-                Join us for an exciting day of athletic competitions and team spirit. Students showcase their talents in various sports events.
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <!-- Event Card 2 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="event-card">
-            <div class="event-image">
-              <img src="/img/school/evnt-1.jpg" alt="Science Exhibition">
-              <div class="event-date">
-                <span class="day">22</span>
-                <span class="month">Mar</span>
-              </div>
-            </div>
-            <div class="event-content">
-              <div class="event-meta">
-                <span><i class="far fa-clock"></i> 10:00 AM - 3:00 PM</span>
-                <span><i class="fas fa-map-marker-alt"></i> School Hall</span>
-              </div>
-              <h3 class="event-title">Science Exhibition</h3>
-              <p class="event-description">
-                Explore innovative projects and scientific discoveries created by our talented young scientists and researchers.
-              </p>
-            </div>
-          </div>
-        </div>
+      <% if (events && events.length > 0) { %>
 
-        <!-- Event Card 3 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="event-card">
-            <div class="event-image">
-              <img src="/img/school/hm-img-2.jpg" alt="Cultural Fest">
-              <div class="event-date">
-                <span class="day">28</span>
-                <span class="month">Mar</span>
-              </div>
-            </div>
-            <div class="event-content">
-              <div class="event-meta">
-                <span><i class="far fa-clock"></i> 5:00 PM - 9:00 PM</span>
-                <span><i class="fas fa-map-marker-alt"></i> Auditorium</span>
-              </div>
-              <h3 class="event-title">Annual Cultural Fest</h3>
-              <p class="event-description">
-                Experience a vibrant celebration of music, dance, and art featuring performances by our talented students.
-              </p>
-            </div>
-          </div>
-        </div>
+          <% events.forEach(event => { %>
 
-        <!-- Event Card 4 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="event-card">
-            <div class="event-image">
-              <img src="/img/school/hm-img-2.jpg" alt="Art Workshop">
-              <div class="event-date">
-                <span class="day">05</span>
-                <span class="month">Apr</span>
-              </div>
-            </div>
-            <div class="event-content">
-              <div class="event-meta">
-                <span><i class="far fa-clock"></i> 10:00 AM - 2:00 PM</span>
-                <span><i class="fas fa-map-marker-alt"></i> Art Room</span>
-              </div>
-              <h3 class="event-title">Creative Art Workshop</h3>
-              <p class="event-description">
-                A hands-on workshop where children explore various art forms and express their creativity through painting and crafts.
-              </p>
-            </div>
-          </div>
-        </div>
+          <div class="col-lg-4 col-md-6">
+              <div class="event-card">
 
-        <!-- Event Card 5 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="event-card">
-            <div class="event-image">
-              <img src="/img/school/evnt-1.jpg" alt="Music Concert">
-              <div class="event-date">
-                <span class="day">12</span>
-                <span class="month">Apr</span>
-              </div>
-            </div>
-            <div class="event-content">
-              <div class="event-meta">
-                <span><i class="far fa-clock"></i> 4:00 PM - 7:00 PM</span>
-                <span><i class="fas fa-map-marker-alt"></i> Auditorium</span>
-              </div>
-              <h3 class="event-title">Spring Music Concert</h3>
-              <p class="event-description">
-                Enjoy melodious performances by our school choir and orchestra in this special spring celebration.
-              </p>
-            </div>
-          </div>
-        </div>
+                  <div class="event-image">
 
-        <!-- Event Card 6 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="event-card">
-            <div class="event-image">
-              <img src="/img/school/hm-img-2.jpg" alt="Parent-Teacher Meet">
-              <div class="event-date">
-                <span class="day">20</span>
-                <span class="month">Apr</span>
+                      <img 
+                          src="<%= event.image ? '/uploads/' + event.image : '/img/default-event.jpg' %>" 
+                          alt="<%= event.title || 'Event Image' %>"
+                      >
+
+                      <% if (event.date) { 
+                          const d = new Date(event.date);
+                          const day = d.getDate();
+                          const month = d.toLocaleString('default', { month: 'short' });
+                      %>
+
+                      <div class="event-date">
+                          <span class="day"><%= day %></span>
+                          <span class="month"><%= month %></span>
+                      </div>
+
+                      <% } %>
+
+                  </div>
+
+                  <div class="event-content">
+
+                      <div class="event-meta">
+
+                          <% if(event.eventPlace){ %>
+                              <span>
+                                  <i class="fas fa-map-marker-alt"></i> 
+                                  <%= event.eventPlace %>
+                              </span>
+                          <% } %>
+
+                          <% if(event.coordinatorName){ %>
+                              <span>
+                                  <i class="fas fa-user"></i> 
+                                  <%= event.coordinatorName %>
+                              </span>
+                          <% } %>
+
+                      </div>
+
+                      <h3 class="event-title">
+                          <%= event.title || 'Untitled Event' %>
+                      </h3>
+
+                      <p class="event-description">
+                          <%= event.description ? event.description.substring(0,120) + '...' : 'No description available.' %>
+                      </p>
+
+                  </div>
+
               </div>
-            </div>
-            <div class="event-content">
-              <div class="event-meta">
-                <span><i class="far fa-clock"></i> 9:00 AM - 12:00 PM</span>
-                <span><i class="fas fa-map-marker-alt"></i> Classrooms</span>
-              </div>
-              <h3 class="event-title">Parent-Teacher Meeting</h3>
-              <p class="event-description">
-                An opportunity for parents to discuss their child's progress and collaborate with teachers for better learning outcomes.
-              </p>
-            </div>
           </div>
-        </div>
+
+          <% }) %>
+
+      <% } else { %>
+
+      <div class="col-12 text-center">
+          <p style="font-size:18px;">No events available at the moment.</p>
+      </div>
+
+      <% } %>
+
       </div>
 
       <!-- Pagination -->
-          <div class="row justify-content-center wow animate__fadeInUp" data-wow-delay="0.95s">
-        <div class="col-auto">
-          <div class="vs-pagination"><a href="#" class="pagi-btn"><i class="fa-solid fa-arrow-left"></i></a>
-            <ul>
-              <li><a href="#" class="active">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">16</a></li>
-            </ul><a href="#" class="pagi-btn active"><i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
+      <% if (totalPages > 1) { %>
+
+      <div class="row justify-content-center wow animate__fadeInUp" data-wow-delay="0.95s">
+      <div class="col-auto">
+
+      <div class="vs-pagination">
+
+          <% if (currentPage > 1) { %>
+              <a href="/events?page=<%= currentPage-1 %>" class="pagi-btn">
+                  <i class="fa-solid fa-arrow-left"></i>
+              </a>
+          <% } %>
+
+          <ul>
+
+          <% for(let i=1;i<=totalPages;i++){ %>
+
+              <li>
+                  <a 
+                      href="/events?page=<%= i %>" 
+                      class="<%= currentPage === i ? 'active' : '' %>"
+                  >
+                      <%= i %>
+                  </a>
+              </li>
+
+          <% } %>
+
+          </ul>
+
+          <% if (currentPage < totalPages) { %>
+              <a href="/events?page=<%= currentPage+1 %>" class="pagi-btn active">
+                  <i class="fa-solid fa-arrow-right"></i>
+              </a>
+          <% } %>
+
       </div>
+
+      </div>
+      </div>
+
+      <% } %>
     </div>
   </section>
 
@@ -533,7 +498,7 @@
         <p class="copyright-text">Copyright <i class="fal fa-copyright"></i>
           <script>
             document.write(new Date().getFullYear())
-          </script> <a href="index.html">The Mission School</a>
+          </script> <a href="/">The Mission School</a>
           All Rights Reserved |Developed By  <a href="https://trivlogic.com/">Trivlogic Private Limited</a>
         </p>
       </div>
@@ -562,27 +527,27 @@
 
 <div class="mobile-bottom-nav">
 
-  <a href="index.html" class="mobile-nav-item ">
+  <a href="/" class="mobile-nav-item active">
     <i class="fas fa-home"></i>
     <span>Home</span>
   </a>
 
-  <a href="about.html" class="mobile-nav-item">
+  <a href="/about" class="mobile-nav-item">
     <i class="fas fa-school"></i>
     <span>About</span>
   </a>
 
-  <a href="events.html" class="mobile-nav-item active">
+  <a href="/events" class="mobile-nav-item">
     <i class="fas fa-calendar-alt"></i>
     <span>Events</span>
   </a>
 
-  <a href="gallery.html" class="mobile-nav-item">
+  <a href="/gallery" class="mobile-nav-item">
     <i class="fas fa-images"></i>
     <span>Gallery</span>
   </a>
 
-  <a href="contact.html" class="mobile-nav-item">
+  <a href="/contact" class="mobile-nav-item">
     <i class="fas fa-phone"></i>
     <span>Contact</span>
   </a>
