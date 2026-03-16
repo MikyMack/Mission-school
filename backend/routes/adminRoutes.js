@@ -7,6 +7,7 @@ const Banner = require("../models/Banner");
 const Testimonial = require("../models/Testimonial");
 const Notice = require("../models/Notice");
 const Gallery = require("../models/Gallery");
+const AdmissionEnquiry = require("../models/AdmissionEnquiry");
 const { isAuthenticated } = require("../middleware/auth");
 const galleryRoutes = require("./galleryRoutes");
 const authController = require("../controllers/authController");
@@ -28,7 +29,7 @@ router.get("/logout", (req, res) => {
 
 router.get("/admin-dashboard", isAuthenticated, async (req, res) => {
   try {
-    const [gallery, notice, banner, blog, testimonials, event] =
+    const [gallery, notice, banner, blog, testimonials, event, enquiries] =
       await Promise.all([
         Gallery.find().sort({ createdAt: -1 }),
         Notice.find().sort({ createdAt: -1 }),
@@ -36,6 +37,7 @@ router.get("/admin-dashboard", isAuthenticated, async (req, res) => {
         Blog.find().sort({ createdAt: -1 }),
         Testimonial.find().sort({ createdAt: -1 }),
         Event.find().sort({ createdAt: -1 }),
+        AdmissionEnquiry.find().sort({ createdAt: -1 }),
       ]);
 
     res.render("admin-dashboard", {
@@ -242,5 +244,92 @@ router.get("/admin-banner", isAuthenticated, async (req, res) => {
     });
   }
 });
+
+router.get("/admin-enquiries", isAuthenticated, async (req, res) => {
+  try {
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const status = req.query.status || "";
+
+    const skip = (page - 1) * limit;
+
+    let filter = {};
+
+    if (status && status !== "all") {
+      filter.status = status;
+    }
+
+    const total = await AdmissionEnquiry.countDocuments(filter);
+
+    const enquiries = await AdmissionEnquiry
+      .find(filter)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    res.render("admin-enquiries", {
+      title: "Admission Enquiries",
+      enquiries,
+      currentPage: page,
+      totalPages: Math.ceil(total / limit),
+      selectedStatus: status
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+// PATCH route to toggle enquiry status
+router.post("/enquiries/:id", isAuthenticated, async (req, res) => {
+  try {
+    const { status } = req.body;
+
+    if (!status) {
+      return res.status(400).json({ success: false, message: "Status is required" });
+    }
+
+    const enquiry = await AdmissionEnquiry.findById(req.params.id);
+
+    if (!enquiry) {
+      return res.status(404).json({ success: false, message: "Enquiry not found" });
+    }
+
+    enquiry.status = status;
+    await enquiry.save();
+
+    res.json({
+      success: true,
+      message: "Status updated successfully",
+      status: enquiry.status
+    });
+
+  } catch (error) {
+    console.error("Update Enquiry Error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error while updating enquiry"
+    });
+  }
+});
+
+router.delete("/enquiries/:id", isAuthenticated, async (req, res) => {
+  try {
+    const enquiry = await AdmissionEnquiry.findByIdAndDelete(req.params.id);
+
+    if (!enquiry) {
+      return res.status(404).json({ message: "Enquiry not found" });
+    }
+
+    res.json({ success: true, message: "Enquiry deleted successfully" });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error while deleting enquiry" });
+  }
+});
+
 
 module.exports = router;

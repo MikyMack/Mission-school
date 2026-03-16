@@ -30,6 +30,7 @@ const bannerRoutes = require('./routes/bannerRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const galleryRoutes = require('./routes/galleryRoutes');
 const noticeRoutes = require('./routes/noticeRoutes');
+const admissionRoutes = require("./routes/admissionRoutes");
 const publicRoutes = require('./routes/publicRoutes');
 
 app.use('/admin', adminRoutes);
@@ -39,6 +40,7 @@ app.use('/event', eventRoutes);
 app.use('/banner', bannerRoutes);
 app.use('/testimonial', testimonialRoutes);
 app.use('/api/blog', blogRoutes);
+app.use("/admission", admissionRoutes);
 app.use('/', publicRoutes);
 
 

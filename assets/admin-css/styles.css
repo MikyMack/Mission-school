@@ -6564,4 +6564,56 @@ select option {
   height: 36px;
   width: 36px;
 }
+.enquiry-drop {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* NEW status */
+.status-new {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #ffeeba;
+}
+
+/* CONTACTED status */
+.status-contacted {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+.enquiry-grid {
+    display: grid;
+    grid-template-columns: 
+        2fr   /* Parent */
+        2fr   /* Student */
+        1.5fr /* Email */
+        1.2fr /* Phone */
+        1fr   /* Grade */
+        2.5fr /* Message */
+        1fr   /* Status */
+        0.8fr /* Action */;
+    gap: 20px;
+    align-items: center;
+}
+
+.enquiry-header {
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.enquiry-row {
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.message {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 /*# sourceMappingURL=styles.css.map */

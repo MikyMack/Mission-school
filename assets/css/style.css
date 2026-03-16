@@ -14870,5 +14870,24 @@ table.variations .reset_variations {
   display:flex;
   justify-content:center;
 }
+.custom-toast{
+position:fixed;
+top:20px;
+right:20px;
+background:#333;
+color:#fff;
+padding:12px 18px;
+border-radius:6px;
+z-index:9999;
+font-size:14px;
+}
+
+.custom-toast.success{
+background:#28a745;
+}
+
+.custom-toast.error{
+background:#dc3545;
+}
 
 /*# sourceMappingURL=style.css.map */

@@ -715,8 +715,8 @@ Predict the future of your child by creating it!</h2>
 
       <!-- Admission Enquiry Form -->
       <div class="col-xl-6 wow animate__fadeInLeft" data-wow-delay="0.25s">
-        <form class="form-style1 ajax-contact" action="mail.php" method="post">
-          <div class="title-area text-center animation-style1 title-anime">
+          <form id="admissionForm" class="form-style1">   
+           <div class="title-area text-center animation-style1 title-anime">
             <span class="sec-subtitle text-body title-anime__title">
               <img src="/img/shapes/left-title-shape2.svg" alt="shape">
               Admissions
@@ -727,17 +727,17 @@ Predict the future of your child by creating it!</h2>
 
           <div class="row gx-20">
             <div class="col-md-12 form-group">
-              <input class="form-control" type="text" name="name" placeholder="Parent / Guardian Name">
+              <input class="form-control" type="text" name="name" placeholder="Parent / Guardian Name" >
               <i class="fas fa-user"></i>
             </div>
 
             <div class="col-md-12 form-group">
-              <input class="form-control" type="email" name="email" placeholder="Email Address">
+              <input class="form-control" type="email" name="email" placeholder="Email Address" >
               <i class="fas fa-envelope"></i>
             </div>
 
             <div class="col-md-12 form-group">
-              <input class="form-control" type="number" name="number" placeholder="Phone Number">
+              <input class="form-control" type="tel" name="number" placeholder="Phone Number" >
               <i class="fas fa-mobile-android"></i>
             </div>
 
@@ -1260,6 +1260,81 @@ Predict the future of your child by creating it!</h2>
   <script src="/js/jquery.nice-select.min.js"></script>
   <!-- Main Js File -->
   <script src="/js/main.js"></script>
+
+
+  <!-- Admission form submit -->
+<script>
+
+const form = document.getElementById("admissionForm");
+
+form.addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const button = form.querySelector("button");
+    const originalText = button.innerText;
+
+    // loading state
+    button.disabled = true;
+    button.innerText = "Processing...";
+
+    const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        number: form.number.value.trim(),
+        student: form.student.value.trim(),
+        grade: form.grade.value.trim(),
+        message: form.message.value.trim()
+    };
+
+    try {
+
+        const response = await fetch("/admission", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            showToast(result.message, "success");
+            form.reset();
+        } else {
+            showToast(result.message || "Submission failed", "error");
+        }
+
+    } catch (error) {
+
+        console.error(error);
+        showToast("Server error. Please try again later.", "error");
+
+    } finally {
+
+        // restore button
+        button.disabled = false;
+        button.innerText = originalText;
+
+    }
+
+});
+
+
+function showToast(message,type){
+
+    const toast = document.createElement("div");
+
+    toast.className = "custom-toast " + type;
+    toast.innerText = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(()=>{
+        toast.remove();
+    },3000);
+
+}
+
+</script>
 </body>
 
 </html>

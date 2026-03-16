@@ -295,25 +295,22 @@
           </p>
         </div>
 
-        <form class="form-style1 ajax-contact wow animate__fadeInUp"
-          data-wow-delay="0.45s"
-          action="mail.php"
-          method="post">
+        <form id="contactForm" class="form-style1 animate__fadeInUp">
 
           <div class="row gx-20">
 
             <div class="col-md-6 form-group">
-              <input class="form-control" type="text" name="first-name" placeholder="Parent First Name">
+              <input class="form-control" type="text" name="first-name" placeholder="Parent First Name" required>
               <i class="fas fa-user"></i>
             </div>
 
             <div class="col-md-6 form-group">
-              <input class="form-control" type="text" name="last-name" placeholder="Parent Last Name">
+              <input class="form-control" type="text" name="last-name" placeholder="Parent Last Name" required>
               <i class="fas fa-user"></i>
             </div>
 
             <div class="col-md-6 form-group">
-              <input class="form-control" type="email" name="email" placeholder="Email Address">
+              <input class="form-control" type="email" name="email" placeholder="Email Address" required>
               <i class="fas fa-envelope"></i>
             </div>
 
@@ -588,6 +585,35 @@
   <script src="/js/jquery.nice-select.min.js"></script>
   <!-- Main Js File -->
   <script src="/js/main.js"></script>
+
+  <!-- Contact Form -->
+   <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+        e.preventDefault();
+
+        const firstName = document.querySelector('[name="first-name"]').value;
+        const lastName = document.querySelector('[name="last-name"]').value;
+        const email = document.querySelector('[name="email"]').value;
+        const inquiry = document.querySelector('[name="inquiry"]').value;
+        const message = document.querySelector('[name="message"]').value;
+
+        const whatsappMessage =
+    `New Inquiry from Website
+
+    Parent Name: ${firstName} ${lastName}
+    Email: ${email}
+    Inquiry Type: ${inquiry}
+
+    Message:
+    ${message}`;
+
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+
+        const whatsappURL = `https://wa.me/918904788233?text=${encodedMessage}`;
+
+        window.open(whatsappURL, "_blank");
+    });
+    </script>
 </body>
 
 </html>
