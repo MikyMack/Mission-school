@@ -1087,7 +1087,7 @@ Predict the future of your child by creating it!</h2>
         <div class="vs-blog blog-style1">
           <div class="blog-img">
             <a href="/blog/<%= blog.slug %>">
-              <img class="blog-img__img" src="/uploads/<%= blog.imageUrl %>" alt="<%= blog.title %>">
+              <img class="blog-img__img" src="/uploads/<%= blog.imageUrl %>" alt="<%= blog.title %>" style="height: 250px; object-fit: cover;">
             </a>
             <span class="blog-date"><%= new Date(blog.createdAt).toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' }) %></span>
           </div>

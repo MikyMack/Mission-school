@@ -76,6 +76,20 @@
   wow.init();
   });
 
+  $('.testi-carousel').on('setPosition', function () {
+    $(this).find('.slick-slide').height('auto');
+
+    let maxHeight = 0;
+
+    $(this).find('.testi-style2').each(function () {
+        if ($(this).height() > maxHeight) {
+            maxHeight = $(this).height();
+        }
+    });
+
+    $(this).find('.testi-style2').height(maxHeight);
+});
+
   /*---------- 02. Mobile Menu Active ----------*/
   $.fn.vsmobilemenu = function (options) {
     var opt = $.extend({

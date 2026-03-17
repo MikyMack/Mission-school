@@ -35,7 +35,7 @@ const publicRoutes = require('./routes/publicRoutes');
 
 app.use('/admin', adminRoutes);
 app.use('/notice', noticeRoutes);
-app.use('/gallery', galleryRoutes);
+app.use('/api/gallery', galleryRoutes);
 app.use('/event', eventRoutes);
 app.use('/banner', bannerRoutes);
 app.use('/testimonial', testimonialRoutes);

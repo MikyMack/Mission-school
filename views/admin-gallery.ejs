@@ -675,7 +675,7 @@
                             const form = document.getElementById('galleryForm');
                             const formData = new FormData(form);
                             const galleryId = document.getElementById('galleryId').value;
-                            const url = galleryId ? `/gallery/${galleryId}` : '/gallery';
+                            const url = galleryId ? `/api/gallery/${galleryId}` : '/api/gallery';
                             const method = galleryId ? 'PUT' : 'POST';
 
                             try {
@@ -700,7 +700,7 @@
 
                         async function editGallery(id) {
                             try {
-                                const response = await fetch(`/gallery/${id}`);
+                                const response = await fetch(`/api/gallery/${id}`);
                                 const gallery = await response.json();
 
                                 if (response.ok) {
@@ -756,7 +756,7 @@ confirmBtn.onclick = function () {
 
                         async function toggleStatus(id, currentStatus) {
                             try {
-                                const response = await fetch(`/gallery/${id}/toggle`, {
+                                const response = await fetch(`/api/gallery/${id}/toggle`, {
                                     method: 'PATCH'
                                 });
 
