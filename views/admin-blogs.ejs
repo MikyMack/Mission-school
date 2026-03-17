@@ -394,18 +394,9 @@
 
                                                         </div>
 
-                                                        <div class="card-footer">
-
-                                                            <button class="tf-button style-1 mb-10"
-                                                                onclick="editBlog('<%= blog._id %>')">
-                                                                <i class="icon-edit"></i> Edit
-                                                            </button>
-
-                                                            <button class="tf-button style-3"
-                                                                onclick="confirmDeleteBlog('<%= blog._id %>')">
-                                                                <i class="icon-trash"></i> Delete
-                                                            </button>
-
+                                                        <div class="card-footer d-flex gap-4">          
+                                                             <button class="st-action-btn st-edit fs-2" title="Edit" onclick="editBlog('<%= blog._id %>')">✏️</button>
+                                                                <button class="st-action-btn st-delete fs-2" title="Delete" onclick="confirmDeleteBlog('<%= blog._id %>')">🗑️</button>
                                                         </div>
 
                                                     </div>

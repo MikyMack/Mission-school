@@ -48,6 +48,7 @@ router.get("/admin-dashboard", isAuthenticated, async (req, res) => {
       blog,
       testimonials,
       event,
+      enquiries
     });
   } catch (error) {
     console.error(error);
@@ -103,6 +104,10 @@ router.get("/admin-blogs", isAuthenticated, async (req, res) => {
 router.get("/admin-events", isAuthenticated, async (req, res) => {
   try {
     const searchTerm = req.query.search || "";
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
     let query = {};
 
     if (searchTerm) {
@@ -116,14 +121,23 @@ router.get("/admin-events", isAuthenticated, async (req, res) => {
       };
     }
 
-    const events = await Event.find(query).sort({ date: -1 });
+    const totalEvents = await Event.countDocuments(query);
+
+    const events = await Event.find(query)
+      .sort({ date: -1 })
+      .skip(skip)
+      .limit(limit);
 
     res.render("admin-events", {
       title: "Event Management",
       events,
       searchTerm,
-      error: null,
+      currentPage: page,
+      totalPages: Math.ceil(totalEvents / limit),
+      totalEvents,
+      limit,
     });
+
   } catch (error) {
     console.error(error);
     res.status(500).render("admin-events", {
