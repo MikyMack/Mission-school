@@ -14890,4 +14890,144 @@ background:#28a745;
 background:#dc3545;
 }
 
+/*=================================
+    One Day One Subject Section Styles
+=================================*/
+
+.one-day-one-subject-section {
+  background-color: #f9f9ff;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.one-day-one-subject-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/img/pattern/pattern-bg.png");
+  background-repeat: repeat;
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.one-day-one-subject-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.one-day-one-subject-content {
+  padding-right: 30px;
+}
+
+.one-day-one-subject-desc {
+  font-size: 16px;
+  color: var(--text-color);
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.one-day-one-subject-points {
+  list-style: none;
+  padding: 0;
+}
+
+.one-day-one-subject-points li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.one-day-one-subject-points li i {
+  color: var(--theme-color2);
+  margin-right: 12px;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.one-day-one-subject-image {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.one-day-one-subject-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  min-height: 400px;
+}
+
+.one-day-one-subject-image:hover img {
+  transform: scale(1.05);
+}
+
+/* Responsive Styles for One Day One Subject Section */
+@media (max-width: 991px) {
+  .one-day-one-subject-content {
+    padding-right: 0;
+    margin-bottom: 30px;
+  }
+  
+  .one-day-one-subject-image img {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 767px) {
+  .one-day-one-subject-section {
+    padding: 60px 0;
+  }
+  
+  .one-day-one-subject-desc {
+    font-size: 15px;
+  }
+  
+  .one-day-one-subject-points li {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  
+  .one-day-one-subject-points li i {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .one-day-one-subject-image img {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 575px) {
+  .one-day-one-subject-section {
+    padding: 50px 0;
+  }
+  
+  .one-day-one-subject-desc {
+    font-size: 14px;
+  }
+  
+  .one-day-one-subject-points li {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .one-day-one-subject-points li i {
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  
+  .one-day-one-subject-image img {
+    min-height: 250px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
