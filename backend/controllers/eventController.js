@@ -14,6 +14,14 @@ exports.createEvent = async (req, res) => {
       eventPlace,
       isActive,
     } = req.body;
+    const indianPhoneRegex = /^(?:\+91|91)?[6-9]\d{9}$/;
+
+    // 🔴 VALIDATION
+    if (coordinatorContact && !indianPhoneRegex.test(coordinatorContact)) {
+      return res.status(400).json({
+        message: "Invalid phone number",
+      });
+    }
 
     const event = new Event({
       date,
@@ -91,6 +99,15 @@ exports.updateEvent = async (req, res) => {
       eventPlace,
       isActive,
     } = req.body;
+
+    const indianPhoneRegex = /^(?:\+91|91)?[6-9]\d{9}$/;
+
+    // 🔴 VALIDATION
+    if (coordinatorContact && !indianPhoneRegex.test(coordinatorContact)) {
+      return res.status(400).json({
+        message: "Invalid phone number",
+      });
+    }
 
     const updateData = {
       date,

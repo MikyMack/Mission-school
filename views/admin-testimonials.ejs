@@ -234,7 +234,7 @@
                     </div>
                     <div class="section-menu-left-wrap">
                         <div class="center">
-                            <div class="center-item">
+                    <div class="center-item">
                                 <ul class="">
                                     <li class="menu-item">
                                         <a href="/admin/admin-dashboard" class="">
@@ -247,9 +247,9 @@
                                         </a>
                                     </li>
                                     <li class="menu-item ">
-                                        <a href="/admin/admin-academics" class="menu-item-button">
+                                        <a href="/admin/admin-blogs" class="menu-item-button">
                                             <div class="icon"><i class="icon-file-plus"></i></div>
-                                            <div class="text">Academic Management</div>
+                                            <div class="text">Blog Management</div>
                                         </a>
                                     
                                     </li>
@@ -273,9 +273,9 @@
                                     </li>
                             
                                     <li class="menu-item active">
-                                        <a href="/admin/admin-alumini" class="menu-item-button">
+                                        <a href="/admin/admin-testimonials" class="menu-item-button">
                                             <div class="icon"><i class="fa fa-users"></i></div>
-                                            <div class="text">Alumni Management</div>
+                                            <div class="text">Testimonials Management</div>
                                         </a>
                               
                                     </li>
@@ -381,7 +381,7 @@
                         <div class="main-content-inner">
                             <div class="main-content-wrap">
                                 <div class="flex items-center flex-wrap justify-between gap20 mb-30">
-                                    <h3>All Alumni</h3>
+                                    <h3>All Testimonials</h3>
                                     <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                                         <li>
                                             <a href="/admin/admin-dashboard"><div class="text-tiny">Dashboard</div></a>
@@ -390,30 +390,17 @@
                                             <i class="icon-chevron-right"></i>
                                         </li>
                                         <li>
-                                            <div class="text-tiny">Alumni Management</div>
+                                            <div class="text-tiny">Testimonial Management</div>
                                         </li>
                                     </ul>
                                 </div>
                                 
                                 <div class="wg-box">
-                                    <div class="title-box">
-                                        <i class="icon-coffee"></i>
-                                        <div class="body-text">Search for alumni by name, batch, message, or current position.</div>
-                                    </div>
+
                                     
                                     <div class="flex items-center justify-between gap10 flex-wrap">
                                         <div class="wg-filter flex-grow">
-                                            <div class="show">
-                                                <div class="text-tiny">Showing</div>
-                                                <div class="select">
-                                                    <select id="entriesPerPage" onchange="updatePagination()">
-                                                        <option value="10">10</option>
-                                                        <option value="20">20</option>
-                                                        <option value="30">30</option>
-                                                    </select>
-                                                </div>
-                                                <div class="text-tiny">entries</div>
-                                            </div>
+                                            
                                             <form class="form-search" action="/admin/admin-testimonials" method="GET">
                                                 <fieldset class="name">
                                                     <input type="text" placeholder="Search here..." class=""
@@ -507,16 +494,34 @@
 
                                         <div class="st-pagination">
 
-                                            <div class="st-page-info">
-                                                Showing 1-<%= testimonials ? testimonials.length : 0 %> 
-                                                of <%= testimonials ? testimonials.length : 0 %> testimonials
-                                            </div>
+                                           
 
                                             <div class="st-page-numbers">
-                                                <button class="st-page-btn">←</button>
-                                                <button class="st-page-btn st-active">1</button>
-                                                <button class="st-page-btn">→</button>
-                                            </div>
+
+    <!-- Previous -->
+    <% if (currentPage > 1) { %>
+        <a href="?page=<%= currentPage - 1 %>&limit=<%= limit %>&search=<%= searchTerm %>">
+            <button class="st-page-btn">←</button>
+        </a>
+    <% } %>
+
+    <!-- Page Numbers -->
+    <% for(let i = 1; i <= totalPages; i++) { %>
+        <a href="?page=<%= i %>&limit=<%= limit %>&search=<%= searchTerm %>">
+            <button class="st-page-btn <%= currentPage === i ? 'st-active' : '' %>">
+                <%= i %>
+            </button>
+        </a>
+    <% } %>
+
+    <!-- Next -->
+    <% if (currentPage < totalPages) { %>
+        <a href="?page=<%= currentPage + 1 %>&limit=<%= limit %>&search=<%= searchTerm %>">
+            <button class="st-page-btn">→</button>
+        </a>
+    <% } %>
+
+</div>
 
                                         </div>
 
@@ -594,7 +599,7 @@
                                 <h3>Confirm Action</h3>
                             </div>
                             <div class="modal-body">
-                                <p id="confirmMessage">Are you sure you want to delete this alumni?</p>
+                                <p id="confirmMessage">Are you sure you want to delete this testimonial?</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="tf-button style-3" onclick="closeConfirmModal()">Cancel</button>
@@ -624,7 +629,7 @@
 
                             const imagePreview = document.getElementById('imagePreview');
 
-                            if (testimonial.image) {
+                            if (testimonial.imageUrl) {
 
                                imagePreview.innerHTML = `<img src="/uploads/${testimonial.imageUrl}" style="max-width:200px;max-height:150px;">`;
 
@@ -788,7 +793,6 @@
 
                                 closeConfirmModal();
 
-                                updateShowingInfo();
 
                             } else {
 
@@ -812,15 +816,7 @@
                     }
 
 
-                    // Update showing text
-                    function updateShowingInfo() {
-
-                        const count = document.querySelectorAll('.st-data-card').length;
-
-                        document.querySelector('.st-page-info').textContent =
-                            `Showing 1-${count} of ${count} testimonials`;
-
-                    }
+                   
 
 
                     // Close modal when clicking outside
@@ -841,13 +837,15 @@
 
 
                     // Pagination
-                    function updatePagination() {
+function updatePagination() {
+    const limit = document.getElementById('entriesPerPage').value;
+    const params = new URLSearchParams(window.location.search);
 
-                        const entriesPerPage = document.getElementById('entriesPerPage').value;
+    params.set('limit', limit);
+    params.set('page', 1); // reset to first page
 
-                        console.log(`Show ${entriesPerPage} entries per page`);
-
-                    }
+    window.location.search = params.toString();
+}
 
                     </script>
                     <!-- /main-content -->

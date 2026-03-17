@@ -18,7 +18,6 @@ const deleteImageFromUploads = async (imageName) => {
 };
 
 exports.createBanner = async (req, res) => {
-    
   try {
     const { title } = req.body;
 
@@ -26,18 +25,23 @@ exports.createBanner = async (req, res) => {
       return res.status(400).json({ message: "Banner image is required" });
     }
 
+    const isActive =
+      req.body.isActive === "true" || req.body.isActive === true;
+
     const banner = new Banner({
       title,
       image: req.file.filename,
+      isActive, // ✅ ADD THIS
     });
 
     await banner.save();
     res.status(201).json(banner);
   } catch (error) {
-    console.log('error',error);
-    res
-      .status(500)
-      .json({ message: "Failed to create banner", error: error.message });
+    console.log("error", error);
+    res.status(500).json({
+      message: "Failed to create banner",
+      error: error.message,
+    });
   }
 };
 
@@ -80,22 +84,28 @@ exports.updateBanner = async (req, res) => {
 
     const updateData = { title };
 
+    // ✅ FIX HERE
+    updateData.isActive =
+      req.body.isActive === "true" || req.body.isActive === true;
+
     if (req.file) {
-      // Delete old image from Cloudinary
       await deleteImageFromUploads(existingBanner.image);
       updateData.image = req.file.filename;
     }
 
-    const updatedBanner = await Banner.findByIdAndUpdate(bannerId, updateData, {
-      new: true,
-    });
+    const updatedBanner = await Banner.findByIdAndUpdate(
+      bannerId,
+      updateData,
+      { new: true }
+    );
 
     res.json(updatedBanner);
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({ message: "Failed to update banner", error: error.message });
+    res.status(500).json({
+      message: "Failed to update banner",
+      error: error.message,
+    });
   }
 };
 

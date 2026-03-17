@@ -407,17 +407,7 @@
                                 <div class="wg-box">
                                     <div class="flex items-center justify-between gap10 flex-wrap">
                                         <div class="wg-filter flex-grow">
-                                            <div class="show">
-                                                <div class="text-tiny">Showing</div>
-                                                <div class="select">
-                                                    <select id="entriesPerPage" onchange="updatePagination()">
-                                                        <option value="10">10</option>
-                                                        <option value="20">20</option>
-                                                        <option value="30">30</option>
-                                                    </select>
-                                                </div>
-                                                <div class="text-tiny">entries</div>
-                                            </div>
+ 
                                             <form class="form-search" id="searchForm">
                                                 <fieldset class="name">
                                                     <input type="text" placeholder="Search here..." class=""
@@ -466,7 +456,7 @@
                                                                 <label class="toggle-switch">
                                                                     <input type="checkbox" class="toggle-input" 
                                                                         <%= banner.isActive ? 'checked' : '' %>
-                                                                        onchange="toggleStatus('<%= banner._id %>', <%= banner.isActive %>)">
+                                                                        onchange="toggleStatus('<%= banner._id %>', this)">
                                                                     <span class="toggle-slider"></span>
                                                                 </label>
                                                             </div>
@@ -491,10 +481,34 @@
                                     
                                     <div class="divider"></div>
                                     <div class="flex items-center justify-between flex-wrap gap10">
-                                        <div class="text-tiny" id="showingInfo">Showing <%= banners.length %> entries</div>
-                                        <ul class="wg-pagination" id="pagination">
-                                            <!-- Pagination will be added dynamically -->
-                                        </ul>
+                                      <ul class="wg-pagination">
+
+    <% if (currentPage > 1) { %>
+        <li>
+            <a href="?page=<%= currentPage - 1 %>&limit=<%= limit %>&search=<%= searchTerm %>">
+                ←
+            </a>
+        </li>
+    <% } %>
+
+    <% for (let i = 1; i <= totalPages; i++) { %>
+        <li>
+            <a href="?page=<%= i %>&limit=<%= limit %>&search=<%= searchTerm %>"
+               class="<%= currentPage === i ? 'active' : '' %>">
+               <%= i %>
+            </a>
+        </li>
+    <% } %>
+
+    <% if (currentPage < totalPages) { %>
+        <li>
+            <a href="?page=<%= currentPage + 1 %>&limit=<%= limit %>&search=<%= searchTerm %>">
+                →
+            </a>
+        </li>
+    <% } %>
+
+</ul>
                                     </div>
                                 </div>
                             </div>
@@ -605,20 +619,23 @@
                         async function saveBanner() {
                             const form = document.getElementById('bannerForm');
                             const formData = new FormData(form);
+
+                            // ✅ Force checkbox value
+                            const isActive = document.getElementById('isActive').checked;
+                            formData.set('isActive', isActive);
+
                             const bannerId = document.getElementById('bannerId').value;
                             const url = bannerId ? `/banner/${bannerId}` : '/banner';
                             const method = bannerId ? 'PUT' : 'POST';
-                
+
                             try {
                                 const response = await fetch(url, {
                                     method: method,
                                     body: formData
                                 });
-                                console.log(response);
-                                
-                
+
                                 const result = await response.json();
-                
+
                                 if (response.ok) {
                                     alert(bannerId ? 'Banner updated successfully!' : 'Banner created successfully!');
                                     window.location.reload();
@@ -630,7 +647,7 @@
                                 alert(error.message);
                             }
                         }
-                
+                        
                         async function editBanner(id) {
                             try {
                                 const response = await fetch(`/banner/${id}`);
@@ -668,11 +685,10 @@
                 
                                 if (response.ok) {
                                     alert('Banner deleted successfully!');
-                                    document.getElementById(`banner-${id}`).remove();
                                     closeConfirmModal();
-                                    
                                     // Update showing info
-                                    updateShowingInfo();
+                                                                        window.location.reload();
+
                                 } else {
                                     throw new Error(result.message || 'Failed to delete banner');
                                 }
@@ -682,27 +698,31 @@
                             }
                         }
                 
-                        async function toggleStatus(id, currentStatus) {
-                            try {
-                                const response = await fetch(`/banner/toggle/${id}`, {
-                                    method: 'PATCH'
-                                });
-                
-                                const result = await response.json();
-                
-                                if (response.ok) {
-                                    // Update the UI without reloading
-                                    const toggleInput = document.querySelector(`#banner-${id} .toggle-input`);
-                                    toggleInput.checked = !currentStatus;
-                                } else {
-                                    throw new Error(result.message || 'Failed to update status');
-                                }
-                            } catch (error) {
-                                console.error('Error:', error);
-                                alert(error.message);
-                            }
-                        }
-                
+async function toggleStatus(id, checkbox) {
+    try {
+        const response = await fetch(`/banner/toggle/${id}`, {
+            method: 'PATCH'
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || 'Failed to update status');
+        }
+
+        // ✅ No need to manually flip
+        // Checkbox already changed by user action
+
+    } catch (error) {
+        console.error('Error:', error);
+        alert(error.message);
+
+        // ❗ Revert UI if failed
+        checkbox.checked = !checkbox.checked;
+    }
+}               
+
+
                         function closeConfirmModal() {
                             document.getElementById('confirmModal').style.display = 'none';
                         }
@@ -742,11 +762,16 @@
                         });
                 
                         // Pagination function
-                        function updatePagination() {
-                            const entriesPerPage = document.getElementById('entriesPerPage').value;
-                            // Implement pagination logic here
-                            console.log(`Show ${entriesPerPage} entries per page`);
-                        }
+function updatePagination() {
+    const limit = document.getElementById('entriesPerPage').value;
+
+    const params = new URLSearchParams(window.location.search);
+
+    params.set('limit', limit);
+    params.set('page', 1); // reset page
+
+    window.location.search = params.toString();
+}
                     </script>
                     <!-- /main-content -->
                 </div>

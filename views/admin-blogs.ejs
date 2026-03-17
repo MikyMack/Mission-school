@@ -325,17 +325,6 @@
                                     
                                     <div class="flex items-center justify-between gap10 flex-wrap">
                                         <div class="wg-filter flex-grow">
-                                            <div class="show">
-                                                <div class="text-tiny">Showing</div>
-                                                <div class="select">
-                                                    <select id="entriesPerPage" onchange="updatePagination()">
-                                                        <option value="10">10</option>
-                                                        <option value="20">20</option>
-                                                        <option value="30">30</option>
-                                                    </select>
-                                                </div>
-                                                <div class="text-tiny">entries</div>
-                                            </div>
                                             <form class="form-search" action="/admin/admin-blogs" method="GET">
                                                 <fieldset class="name">
                                                     <input type="text" placeholder="Search here..." class=""
@@ -412,6 +401,39 @@
                                             <% } %>
 
                                         </div>
+                                        <div class="st-pagination">
+
+    <div class="st-page-info">
+        Showing <%= (currentPage - 1) * limit + 1 %> 
+        to <%= Math.min(currentPage * limit, totalBlogs) %> 
+        of <%= totalBlogs %> blogs
+    </div>
+
+    <div class="st-page-numbers">
+
+        <% if (currentPage > 1) { %>
+            <a href="?page=<%= currentPage - 1 %>&limit=<%= limit %>&search=<%= searchTerm %>">
+                <button class="st-page-btn">←</button>
+            </a>
+        <% } %>
+
+        <% for (let i = 1; i <= totalPages; i++) { %>
+            <a href="?page=<%= i %>&limit=<%= limit %>&search=<%= searchTerm %>">
+                <button class="st-page-btn <%= currentPage === i ? 'st-active' : '' %>">
+                    <%= i %>
+                </button>
+            </a>
+        <% } %>
+
+        <% if (currentPage < totalPages) { %>
+            <a href="?page=<%= currentPage + 1 %>&limit=<%= limit %>&search=<%= searchTerm %>">
+                <button class="st-page-btn">→</button>
+            </a>
+        <% } %>
+
+    </div>
+
+</div>
                                     </div>
                                 </div>
                             </div>
@@ -718,11 +740,14 @@
                     // ---------------- PAGINATION (Placeholder) ----------------
 
                     function updatePagination() {
+                        const limit = document.getElementById('entriesPerPage').value;
 
-                        const entriesPerPage = document.getElementById('entriesPerPage').value;
+                        const urlParams = new URLSearchParams(window.location.search);
 
-                        console.log(`Show ${entriesPerPage} entries per page`);
+                        urlParams.set('limit', limit);
+                        urlParams.set('page', 1); // reset to page 1
 
+                        window.location.search = urlParams.toString();
                     }
 
                     </script>
