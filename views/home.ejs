@@ -482,7 +482,7 @@ Predict the future of your child by creating it!</h2>
   <!-- Events Area Start -->
   <section class="events-section space">
   <div class="container">
-    <div class="row justify-content-center mb-5">
+    <div class="row justify-content-center">
       <div class="col-xl-8">
         <div class="title-area text-center animation-style1 title-anime">
           <span class="sec-subtitle text-theme title-anime__title">
@@ -499,6 +499,14 @@ Predict the future of your child by creating it!</h2>
 
     <div class="row">
       <div class="col-12">
+         <div class="d-flex justify-content-end align-items-center mb-3 events-arrows">
+    <button class="icon-btn2" data-slick-prev=".events-slider">
+      <i class="fal fa-long-arrow-left"></i>
+    </button>
+    <button class="icon-btn2" data-slick-next=".events-slider">
+      <i class="fal fa-long-arrow-right"></i>
+    </button>
+  </div>
         <div class="events-slider vs-carousel wow animate__fadeInUp" data-wow-delay="0.3s" 
              data-slide-show="3" 
              data-lg-slide-show="3" 
@@ -536,7 +544,7 @@ Predict the future of your child by creating it!</h2>
       </div>
     </div>
 
-    <div class="text-center mt-5">
+    <div class="text-center">
       <a href="/events" class="vs-btn">View All Events <i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
@@ -763,17 +771,17 @@ Predict the future of your child by creating it!</h2>
 
           <div class="row gx-20">
             <div class="col-md-12 form-group">
-              <input class="form-control" type="text" name="name" placeholder="Parent / Guardian Name" >
+              <input class="form-control" type="text" name="name" placeholder="Parent / Guardian Name *" >
               <i class="fas fa-user"></i>
             </div>
 
             <div class="col-md-12 form-group">
-              <input class="form-control" type="email" name="email" placeholder="Email Address" >
+              <input class="form-control" type="email" name="email" placeholder="Email Address *" >
               <i class="fas fa-envelope"></i>
             </div>
 
             <div class="col-md-12 form-group">
-              <input class="form-control" type="tel" name="number" placeholder="Phone Number" >
+              <input class="form-control" type="tel" name="number" placeholder="Phone Number *" >
               <i class="fas fa-mobile-android"></i>
             </div>
 
@@ -969,6 +977,7 @@ Predict the future of your child by creating it!</h2>
   <section style="margin-top:5rem!important;" class="testimonial-layout2 space ">
     <div class="container">
       <div class="row justify-content-center">
+        
         <div class="col-xl-6 col-lg-7 col-auto">
           <div class="title-area text-center mt-n1 animation-style1 title-anime">
             <span class="sec-subtitle text-theme title-anime__title">
@@ -984,6 +993,15 @@ Predict the future of your child by creating it!</h2>
 
       <div class="row gx-2">
         <div class="testi-body position-relative">
+           <!-- Add navigation buttons here -->
+  <div class="d-flex justify-content-end align-items-center gap-2 mb-3">
+    <button class="icon-btn2" data-slick-prev=".testi-carousel">
+      <i class="fal fa-long-arrow-left"></i>
+    </button>
+    <button class="icon-btn2" data-slick-next=".testi-carousel">
+      <i class="fal fa-long-arrow-right"></i>
+    </button>
+  </div>
           <div class="row vs-carousel testi-carousel"
             data-slide-show="3"
             data-lg-slide-show="2"

@@ -161,7 +161,7 @@ exports.submitEnquiry = async (req, res) => {
 `;
     try {
       await sendMail(
-        process.env.EMAIL_USER,
+        email,
         "New Admission Enquiry",
         adminHtml,
       );

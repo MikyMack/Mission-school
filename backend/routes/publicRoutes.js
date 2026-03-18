@@ -12,9 +12,12 @@ const Testimonial = require('../models/Testimonial');
 
 router.get('/', async (req, res) => {
     try {
+        const startOfToday = new Date();
+        startOfToday.setHours(0, 0, 0, 0); // today at 00:00:00
+
         const [banners, events, galleries, notices, blogs, testmonials] = await Promise.all([
             Banner.find({ isActive: true }).sort({ createdAt: -1 }),
-            Event.find({ isActive: true }).sort({ createdAt: -1 }),
+            Event.find({ isActive: true, date: { $gte: startOfToday } }).sort({ date: 1 }),
             Gallery.find({ isActive: true }).sort({ createdAt: -1 }),
             Notice.find({ isActive: true }).sort({ createdAt: -1 }),
             Blog.find().sort({ createdAt: -1 }),
@@ -46,16 +49,23 @@ router.get('/about', async (req, res) => {
 });
 router.get('/events', async (req, res) => {
     try {
-       
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 6; 
-
         const skip = (page - 1) * limit;
 
-        const totalEvents = await Event.countDocuments({ isActive: true });
+        // Include all events from today onwards
+        const startOfToday = new Date();
+        startOfToday.setHours(0, 0, 0, 0); // today 00:00:00
 
-        const events = await Event.find({ isActive: true })
-            .sort({ createdAt: -1 })
+        const filter = { 
+            isActive: true, 
+            date: { $gte: startOfToday } 
+        };
+
+        const totalEvents = await Event.countDocuments(filter);
+
+        const events = await Event.find(filter)
+            .sort({ date: 1 }) // soonest events first
             .skip(skip)
             .limit(limit);
 
@@ -89,7 +99,7 @@ router.get('/our-programs', async (req, res) => {
 router.get('/gallery', async (req, res) => {
     try {
       const page = parseInt(req.query.page) || 1;        // Current page number, default 1
-      const limit = 10;                                   // Number of items per page
+      const limit = 6;                                   // Number of items per page
       const skip = (page - 1) * limit;
   
       // Fetch total count of active gallery items
@@ -180,8 +190,8 @@ router.get('/unesco', async (req, res) => {
 });
 router.get('/quality-education', async (req, res) => {
     try {
-        const testimonials = await Testimonial.find().sort({ date: -1 })
-        res.render('quality-education', { title: 'quality-education',testimonials});
+        const testmonials = await Testimonial.find().sort({ date: -1 })
+        res.render('quality-education', { title: 'quality-education',testmonials});
     } catch (error) {
         console.error(error);
         res.status(500).send('Error loading contact page data');
