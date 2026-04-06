@@ -48,6 +48,7 @@ router.get("/admin-dashboard", isAuthenticated, async (req, res) => {
       blog,
       testimonials,
       event,
+      enquiries
     });
   } catch (error) {
     console.error(error);
@@ -68,6 +69,10 @@ router.get("/admin-blogs", isAuthenticated, async (req, res) => {
   try {
     const searchTerm = req.query.search || "";
 
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
     let query = {};
 
     if (searchTerm) {
@@ -81,14 +86,26 @@ router.get("/admin-blogs", isAuthenticated, async (req, res) => {
       };
     }
 
-    const blogs = await Blog.find(query).sort({ createdAt: -1 });
+    // 🔥 TOTAL COUNT
+    const totalBlogs = await Blog.countDocuments(query);
+
+    // 🔥 PAGINATED DATA
+    const blogs = await Blog.find(query)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
 
     res.render("admin-blogs", {
       title: "Blog Management",
       blogs,
       searchTerm,
+      currentPage: page,
+      totalPages: Math.ceil(totalBlogs / limit),
+      totalBlogs,
+      limit,
       error: null,
     });
+
   } catch (error) {
     console.error("Admin Blog Load Error:", error);
 
@@ -96,13 +113,23 @@ router.get("/admin-blogs", isAuthenticated, async (req, res) => {
       title: "Blog Management",
       blogs: [],
       searchTerm: "",
+      currentPage: 1,
+      totalPages: 1,
+      totalBlogs: 0,
+      limit: 10,
       error: "Failed to load blogs",
     });
   }
 });
+
+
 router.get("/admin-events", isAuthenticated, async (req, res) => {
   try {
     const searchTerm = req.query.search || "";
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
     let query = {};
 
     if (searchTerm) {
@@ -116,14 +143,23 @@ router.get("/admin-events", isAuthenticated, async (req, res) => {
       };
     }
 
-    const events = await Event.find(query).sort({ date: -1 });
+    const totalEvents = await Event.countDocuments(query);
+
+    const events = await Event.find(query)
+      .sort({ date: -1 })
+      .skip(skip)
+      .limit(limit);
 
     res.render("admin-events", {
       title: "Event Management",
       events,
       searchTerm,
-      error: null,
+      currentPage: page,
+      totalPages: Math.ceil(totalEvents / limit),
+      totalEvents,
+      limit,
     });
+
   } catch (error) {
     console.error(error);
     res.status(500).render("admin-events", {
@@ -136,6 +172,9 @@ router.get("/admin-events", isAuthenticated, async (req, res) => {
 router.get("/admin-gallery", isAuthenticated, async (req, res) => {
   try {
     const searchTerm = req.query.search || "";
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+
     let query = {};
 
     if (searchTerm) {
@@ -147,26 +186,42 @@ router.get("/admin-gallery", isAuthenticated, async (req, res) => {
       };
     }
 
-    const galleryItems = await Gallery.find(query).sort({ createdAt: -1 });
+    const totalItems = await Gallery.countDocuments(query);
+    const totalPages = Math.ceil(totalItems / limit);
+
+    const galleryItems = await Gallery.find(query)
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
 
     res.render("admin-gallery", {
       title: "Gallery Management",
       galleryItems,
       searchTerm,
-      error: null,
+      currentPage: page,
+      totalPages,
+      totalItems,
+      limit
     });
+
   } catch (error) {
     console.error(error);
     res.status(500).render("admin-gallery", {
       error: "Failed to load gallery items",
       galleryItems: [],
       searchTerm: "",
+      currentPage: 1,
+      totalPages: 1,
+      totalItems: 0
     });
   }
 });
 router.get("/admin-testimonials", isAuthenticated, async (req, res) => {
   try {
     const searchTerm = req.query.search || "";
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+
     let query = {};
 
     if (searchTerm) {
@@ -179,19 +234,32 @@ router.get("/admin-testimonials", isAuthenticated, async (req, res) => {
       };
     }
 
-    const testimonials = await Testimonial.find(query).sort({ createdAt: -1 });
+    const total = await Testimonial.countDocuments(query);
+
+    const testimonials = await Testimonial.find(query)
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    const totalPages = Math.ceil(total / limit);
+
     res.render("admin-testimonials", {
       title: "Testimonials Management",
       testimonials,
       searchTerm,
-      error: null,
+      currentPage: page,
+      totalPages,
+      limit
     });
+
   } catch (error) {
     console.error(error);
     res.status(500).render("admin-testimonials", {
       title: "Testimonials Management",
       testimonials: [],
       searchTerm: "",
+      currentPage: 1,
+      totalPages: 1,
       error: "Failed to load testimonials",
     });
   }
@@ -229,18 +297,47 @@ router.get("/admin-notice", isAuthenticated, async (req, res) => {
 });
 router.get("/admin-banner", isAuthenticated, async (req, res) => {
   try {
-    const banners = await Banner.find().sort({ createdAt: -1 });
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+
+    const skip = (page - 1) * limit;
+
+    // 🔍 Optional search
+    const searchTerm = req.query.search || "";
+    let query = {};
+
+    if (searchTerm) {
+      query.title = { $regex: searchTerm, $options: "i" };
+    }
+
+    const totalBanners = await Banner.countDocuments(query);
+
+    const banners = await Banner.find(query)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
 
     res.render("admin-banner", {
       title: "Banner Management",
       banners,
+      currentPage: page,
+      totalPages: Math.ceil(totalBanners / limit),
+      totalBanners,
+      limit,
+      searchTerm,
       error: null,
     });
+
   } catch (error) {
     console.error(error);
     res.status(500).render("admin-banner", {
       error: "Failed to load banners",
       banners: [],
+      currentPage: 1,
+      totalPages: 1,
+      totalBanners: 0,
+      limit: 10,
+      searchTerm: "",
     });
   }
 });

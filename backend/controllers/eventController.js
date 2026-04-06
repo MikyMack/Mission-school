@@ -14,6 +14,14 @@ exports.createEvent = async (req, res) => {
       eventPlace,
       isActive,
     } = req.body;
+    const indianPhoneRegex = /^(?:\+91|91)?[6-9]\d{9}$/;
+
+    // 🔴 VALIDATION
+    if (coordinatorContact && !indianPhoneRegex.test(coordinatorContact)) {
+      return res.status(400).json({
+        message: "Invalid phone number",
+      });
+    }
 
     const event = new Event({
       date,
@@ -22,7 +30,7 @@ exports.createEvent = async (req, res) => {
       coordinatorName,
       coordinatorContact,
       eventPlace,
-      isActive: isActive !== "false",
+      isActive: isActive === "true" || isActive === true,
       image: req.file ? req.file.filename : undefined,
     });
 
@@ -92,6 +100,15 @@ exports.updateEvent = async (req, res) => {
       isActive,
     } = req.body;
 
+    const indianPhoneRegex = /^(?:\+91|91)?[6-9]\d{9}$/;
+
+    // 🔴 VALIDATION
+    if (coordinatorContact && !indianPhoneRegex.test(coordinatorContact)) {
+      return res.status(400).json({
+        message: "Invalid phone number",
+      });
+    }
+
     const updateData = {
       date,
       title,
@@ -99,7 +116,7 @@ exports.updateEvent = async (req, res) => {
       coordinatorName,
       coordinatorContact,
       eventPlace,
-      isActive: isActive !== "false",
+      isActive: isActive === "true" || isActive === true,
     };
 
     if (req.file) {
@@ -134,28 +151,29 @@ exports.updateEvent = async (req, res) => {
 
 // Delete an event
 exports.deleteEvent = async (req, res) => {
-    try {
-        const event = await Event.findById(req.params.id);
+  try {
+    const event = await Event.findById(req.params.id);
 
-        if (!event) {
-            return res.status(404).json({ message: 'Event not found' });
-        }
-
-        if (event.image) {
-            const filePath = path.join(__dirname, '..', 'uploads', event.image);
-
-            if (fs.existsSync(filePath)) {
-                fs.unlinkSync(filePath);
-            }
-        }
-
-        await Event.findByIdAndDelete(req.params.id);
-
-        res.json({ message: 'Event deleted successfully' });
-
-    } catch (error) {
-        res.status(500).json({ message: 'Failed to delete event', error: error.message });
+    if (!event) {
+      return res.status(404).json({ message: "Event not found" });
     }
+
+    if (event.image) {
+      const filePath = path.join(__dirname, "..", "uploads", event.image);
+
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    }
+
+    await Event.findByIdAndDelete(req.params.id);
+
+    res.json({ message: "Event deleted successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to delete event", error: error.message });
+  }
 };
 
 // Toggle event status

@@ -134,9 +134,9 @@ exports.deleteGallery = async (req, res) => {
 exports.toggleGalleryActive = async (req, res) => {
   try {
       const galleryItem = await Gallery.findById(req.params.id);
-      if (!galleryItem) {
-          return res.status(404).json({ message: 'Gallery item not found' });
-      }
+     if (!galleryItem) {
+    return res.status(404).json({ message: 'Gallery item already deleted' });
+}
 
       galleryItem.isActive = !galleryItem.isActive;
       await galleryItem.save();
