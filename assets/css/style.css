@@ -87,8 +87,8 @@ Version: 1.0.0
   --border-color: #e6edfd;
 
   --gradient-color: linear-gradient(135deg, #081652, #0585c5, #0b2047);
-  --title-font: "Unbounded", sans-serif;
-  --body-font: "Poppins", sans-serif;
+  --title-font: "Nunito Sans", "Lato", "Segoe UI", Arial, sans-serif;
+  --body-font: "Nunito Sans", "Lato", "Segoe UI", Arial, sans-serif;
   --icon-font: "Font Awesome 6 Pro";
   --main-container: 100%;
   --main-container2: 1420px;
@@ -239,6 +239,7 @@ p {
   margin: 0 0 18px 0;
   color: var(--body-color);
   line-height: 1.63;
+  font-weight: 500;
   /* Small devices */
 }
 @media (max-width: 767px) {
@@ -4553,7 +4554,7 @@ mar .recent-product .post-title > a {
   display: block;
   position: relative;
   font-family: var(--title-font);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
   color: var(--title-color);
 }
@@ -4567,7 +4568,7 @@ mar .recent-product .post-title > a {
 }
 .main-menu > ul > li > a,
 .menu-style2 > ul > li > a {
-  padding: 37px 0;
+  padding: 22px 0;
 }
 .main-menu > ul > li > a .new-label,
 .menu-style2 > ul > li > a .new-label {
@@ -5569,7 +5570,7 @@ mar .recent-product .post-title > a {
     display: none;
   }
   .header-layout1 .header-top {
-    padding: 18px 0 18px;
+    padding: 8px 0 8px;
   }
   .header-layout1 .header-bottom {
     position: relative;
@@ -5609,7 +5610,7 @@ mar .recent-product .post-title > a {
   }
 }
 .header-logo {
-  padding: 20px 0px 20px 0;
+  padding: 0px 0px 0px 0;
   position: relative;
   z-index: 1;
 }
@@ -14941,6 +14942,7 @@ background:#dc3545;
   align-items: center;
   margin-bottom: 15px;
   font-size: 16px;
+  font-weight: 500;
   color: var(--text-color);
   line-height: 1.6;
 }

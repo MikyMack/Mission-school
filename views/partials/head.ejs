@@ -1,0 +1,87 @@
+<%
+  const pageTitleStr =
+    typeof seoTitle === 'string' && seoTitle.trim()
+      ? seoTitle.trim()
+      : (typeof title !== 'undefined' && title
+          ? siteName + ' | ' + String(title)
+          : siteName);
+  const desc =
+    typeof seoDescription === 'string' && seoDescription.trim()
+      ? seoDescription.trim()
+      : defaultSeoDescription;
+  const keywords =
+    typeof seoKeywords === 'string' && seoKeywords.trim()
+      ? seoKeywords.trim()
+      : defaultSeoKeywords;
+  let ogImg = typeof seoImage === 'string' && seoImage.trim() ? seoImage.trim() : '';
+  if (!ogImg) {
+    ogImg = siteUrl + '/img/school/logo.avif';
+  } else if (!/^https?:\/\//i.test(ogImg)) {
+    ogImg = siteUrl + (ogImg.startsWith('/') ? ogImg : '/' + ogImg);
+  }
+  const robotsContent =
+    typeof seoNoindex !== 'undefined' && seoNoindex ? 'noindex, nofollow' : 'index, follow';
+  const ogType =
+    typeof seoType === 'string' && seoType.trim() ? seoType.trim() : 'website';
+  const fontHref =
+    'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Unbounded:wght@200..900&display=swap';
+%>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <title><%= pageTitleStr %></title>
+  <meta name="description" content="<%= desc %>">
+  <% if (keywords) { %>
+  <meta name="keywords" content="<%= keywords %>">
+  <% } %>
+  <meta name="author" content="<%= siteName %>">
+  <meta name="robots" content="<%= robotsContent %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#1a1a2e">
+  <link rel="canonical" href="<%= canonicalUrl %>">
+
+  <meta property="og:site_name" content="<%= siteName %>">
+  <meta property="og:title" content="<%= pageTitleStr %>">
+  <meta property="og:description" content="<%= desc %>">
+  <meta property="og:url" content="<%= canonicalUrl %>">
+  <meta property="og:type" content="<%= ogType %>">
+  <meta property="og:image" content="<%= ogImg %>">
+  <meta property="og:locale" content="en_IN">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= pageTitleStr %>">
+  <meta name="twitter:description" content="<%= desc %>">
+  <meta name="twitter:image" content="<%= ogImg %>">
+
+  <link rel="icon" href="/img/school/fav.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="/img/school/fav.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="<%= fontHref %>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="<%= fontHref %>"></noscript>
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/css/magnific-popup.min.css">
+  <link rel="stylesheet" href="/css/slick.min.css">
+  <link rel="stylesheet" href="/css/nice-select.min.css">
+  <link rel="stylesheet" href="/css/animate.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script type="application/ld+json">
+  <%- JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    name: siteName,
+    url: siteUrl,
+    logo: siteUrl + '/img/school/logo.avif'
+  }) %>
+  </script>
+  <script type="application/ld+json">
+  <%- JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteName,
+    url: siteUrl
+  }) %>
+  </script>
