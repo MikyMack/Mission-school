@@ -257,6 +257,8 @@
   <style>
     .hero-content {
       padding: 60px 18px 75px 18px;
+      /* Ensure content expands for wrapped title */
+      min-width: 0;
     }
     .hero-title-l {
       font-size: 3.5rem;
@@ -267,8 +269,15 @@
       text-shadow: 0 6px 32px rgba(0,0,48,0.18), 0 1px 2px #2229;
       line-height: 1.16;
       letter-spacing: 0.01em;
-      display: inline-block;
+      display: block;
       word-break: break-word;
+      /* Allow wrapping and expand to container */
+      white-space: normal;
+      overflow-wrap: break-word;
+      width: 100%;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
     @media (max-width:1200px) {
       .hero-title-l {
@@ -278,8 +287,12 @@
     }
     @media (max-width:768px) {
       .hero-title-l {
-        font-size: 2.1rem;
-        min-height: 36px;
+        font-size: 1.4rem;
+        min-height: unset;
+        word-break: break-word;
+        line-height: 1.24;
+        padding-left: 4px;
+        padding-right: 4px;
       }
       .hero-desc-l {
         font-size: 1.12rem;
@@ -291,8 +304,11 @@
     }
     @media (max-width:480px) {
       .hero-title-l {
-        font-size: 1.6rem;
-        min-height: 28px;
+        font-size: 1.12rem;
+        min-height: unset;
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 98vw;
       }
     }
     .hero-desc-l {
@@ -323,23 +339,35 @@
     }
     /* Typewriter Large Font Realistic Animation */
     .typewriter span {
-      display: inline-block;
+      display: inline;
       border-right: 4px solid #fff;
       margin-right:2px;
       padding-right:4px;
-      white-space:nowrap;
+      white-space: pre-line;
       overflow: hidden;
       min-width: 1ch;
+      word-break: break-word;
+      max-width: 100%;
+    }
+    @media (max-width:768px) {
+      .typewriter span {
+        font-size: inherit;
+        white-space: pre-line;
+        word-break: break-word;
+        overflow: unset;
+        max-width: 100vw;
+      }
     }
   </style>
   <script>
-    // Simple vanilla JS Typewriter for .typewriter
+    // Enhanced vanilla JS Typewriter for .typewriter to support wrapping on mobile
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('.typewriter').forEach(function(el){
         const fulltxt = el.getAttribute('data-typetext') || '';
         const span = el.querySelector('span');
         if (!span) return;
         span.textContent = '';
+        span.style.wordBreak = 'break-word'; // force word-break for safety
         let i = 0;
         function typer() {
           if (i <= fulltxt.length) {
