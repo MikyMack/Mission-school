@@ -203,37 +203,47 @@
   ==============================-->
 <section class="hero-layout1 hero-slider" data-wow-delay="0.25s" aria-hidden="true">
   <div class="hero-slider-wrapper">
-    <% banners.forEach((banner, index) => { %>
+    <% 
+      // Static content options per banner index
+      const staticOptions = [
+        {
+          title: '50 Years of Nurturing Excellence',
+          desc: 'Join a legacy of quality education that has been shaping confident, compassionate, and future-ready global citizens for half a century.',
+          btn: { text: 'Start Your Journey', link: '/contact' }
+        },
+        {
+          title: 'Where Creativity Meets Character',
+          desc: 'We go beyond textbooks to foster curiosity and emotional well-being, building a strong foundation for your child’s lifelong success.',
+          btn: { text: 'Explore Our Programs', link: '/our-programs' }
+        },
+        {
+          title: 'Empowering Every Unique Learner',
+          desc: 'Discover a joyful learning environment designed to spark innovation and ignite a passion for excellence in every child.',
+          btn: { text: 'Apply for Admission', link: 'https://www.edusap.in/online-admission/Mx25ZMSi/' }
+        }
+      ];
+    %>
+    <% banners.forEach((banner, index) => { 
+         const opt = staticOptions[index % staticOptions.length];
+         const useStatic = !banner.title;
+         const displayTitle = banner.title ? banner.title : opt.title;
+    %>
       <div class="hero-slide" style="background-image: url('/uploads/<%= banner.image %>');">
         <div class="hero-item">
           <div class="container position-relative z-index">
-            <div class="row">
-              <div class="col-lg-8 position-relative">
-                <div class="hero-content">
-                  <% if (banner.title) { %>
-                    <div class="hero-subtitle wow animate__fadeInUp" data-wow-delay="0.30s">
-                      <%= banner.title %>
-                    </div>
-                  <% } %>
-
-                  <% if (banner.subtitle) { %>
-                    <h1 class="hero-title wow animate__fadeInUp" data-wow-delay="0.50s">
-                      <%= banner.subtitle %>
-                    </h1>
-                  <% } %>
-
-                  <% if (banner.description) { %>
-                    <p class="hero-text wow animate__fadeInUp" data-wow-delay="0.75s">
-                      <%= banner.description %>
+            <div class="row justify-content-center">
+              <div class="col-12 col-lg-10">
+                <div class="hero-content text-center">
+                  <!-- Typewriter animation -->
+                  <h1 class="hero-title-l typewriter" data-typetext="<%= displayTitle.replace(/"/g,'&quot;') %>"><span></span></h1>
+                  <% if (useStatic) { %>
+                    <p class="hero-desc-l">
+                      <%= opt.desc %>
                     </p>
-                  <% } %>
-
-                  <% if (banner.link) { %>
-                    <a class="vs-btn wow animate__fadeInUp" data-wow-delay="0.95s" href="<%= banner.link %>">
-                      Learn More <i class="fa-regular fa-arrow-right"></i>
+                    <a href="<%= opt.btn.link %>" class="btn btn-primary hero-btn-l">
+                      <%= opt.btn.text %>
                     </a>
                   <% } %>
-
                   <span class="dot-shape wow animate__bounceInRight" data-wow-delay="0.70s"></span>
                 </div>
               </div>
@@ -243,6 +253,105 @@
       </div>
     <% }) %>
   </div>
+
+  <style>
+    .hero-content {
+      padding: 60px 18px 75px 18px;
+    }
+    .hero-title-l {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #fff;
+      min-height: 72px;
+      margin-bottom: 32px;
+      text-shadow: 0 6px 32px rgba(0,0,48,0.18), 0 1px 2px #2229;
+      line-height: 1.16;
+      letter-spacing: 0.01em;
+      display: inline-block;
+      word-break: break-word;
+    }
+    @media (max-width:1200px) {
+      .hero-title-l {
+        font-size: 2.3rem;
+        min-height: 56px;
+      }
+    }
+    @media (max-width:768px) {
+      .hero-title-l {
+        font-size: 2.1rem;
+        min-height: 36px;
+      }
+      .hero-desc-l {
+        font-size: 1.12rem;
+      }
+      .hero-btn-l {
+        font-size: 1rem;
+        padding: 13px 26px;
+      }
+    }
+    @media (max-width:480px) {
+      .hero-title-l {
+        font-size: 1.6rem;
+        min-height: 28px;
+      }
+    }
+    .hero-desc-l {
+      font-size: 1.45rem;
+      color: #f6f8fa;
+      margin-bottom: 35px;
+      line-height: 1.6;
+      font-weight: 400;
+      text-shadow: 0 2px 6px rgba(0,0,0,.16);
+    }
+    .hero-btn-l {
+      padding: 16px 40px;
+      font-size: 1.2rem;
+      border-radius: 32px;
+      font-weight: 700;
+      background: #2d59c3;
+      border: none;
+      color: #fff !important;
+      transition: background .15s;
+      box-shadow: 0 2px 20px rgba(20,20,50,0.13);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+    .hero-btn-l:hover, .hero-btn-l:focus {
+      background: #203f80;
+      color: #fff;
+      text-decoration: none;
+    }
+    /* Typewriter Large Font Realistic Animation */
+    .typewriter span {
+      display: inline-block;
+      border-right: 4px solid #fff;
+      margin-right:2px;
+      padding-right:4px;
+      white-space:nowrap;
+      overflow: hidden;
+      min-width: 1ch;
+    }
+  </style>
+  <script>
+    // Simple vanilla JS Typewriter for .typewriter
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.typewriter').forEach(function(el){
+        const fulltxt = el.getAttribute('data-typetext') || '';
+        const span = el.querySelector('span');
+        if (!span) return;
+        span.textContent = '';
+        let i = 0;
+        function typer() {
+          if (i <= fulltxt.length) {
+            span.textContent = fulltxt.slice(0, i);
+            i++;
+            setTimeout(typer, i < fulltxt.length ? 42 : 260); // realistic type speed
+          }
+        }
+        typer();
+      });
+    });
+  </script>
 
   <!-- Slider Controls -->
   <div class="hero-slider-controls">
@@ -896,7 +1005,7 @@ A happy child thrives in a positive environment. By nurturing curiosity, creativ
     </div>
 
     <div class="row vs-carousel gallery-slide1" data-slide-show="3" data-lg-slide-show="3" data-md-slide-show="2" data-center-mode="true">
-
+  <!-- Gallery area End -->
       <% galleries.forEach(gallery => { %>
       <div class="col-xl-4">
         <div class="gallery-box style2 wow animate__fadeInUp" data-wow-delay="0.30s">
@@ -917,6 +1026,156 @@ A happy child thrives in a positive environment. By nurturing curiosity, creativ
         </div>
       </div>
       <% }) %>
+
+      <!-- Fullscreen Gallery Lightbox -->
+      <div id="galleryLightbox" class="gallery-lightbox" style="display:none;">
+        <div class="glb-backdrop"></div>
+        <div class="glb-content">
+          <button class="glb-close" aria-label="Close">&times;</button>
+          <button class="glb-prev" aria-label="Previous">&lt;</button>
+          <img class="glb-img" src="" alt="Gallery Image">
+          <button class="glb-next" aria-label="Next">&gt;</button>
+          <div class="glb-caption">
+            <span class="glb-title"></span>
+            <span class="glb-desc"></span>
+          </div>
+        </div>
+      </div>
+      <style>
+        .gallery-lightbox {
+          position: fixed; z-index: 10010; left:0; top:0; width:100vw; height:100vh; 
+          background: rgba(12,29,64,0.88); display:flex; justify-content: center; align-items: center;
+        }
+        .gallery-lightbox:not(.showing) {display: none;}
+        .glb-backdrop {
+          position: absolute; left:0; top:0; width:100%; height:100%; background: transparent; cursor:pointer;
+        }
+        .glb-content {
+          position: relative;
+          background: rgba(34, 45, 67, 0.96);
+          box-shadow: 0 8px 60px #0005, 0 2px 24px #1e2331bb;
+          border-radius: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          max-width: 90vw;
+          max-height: 86vh;
+          padding: 32px 30px 22px 30px;
+          animation: popscale 0.6s cubic-bezier(.6,.2,0,1.1);
+          box-sizing: border-box;
+        }
+        @keyframes popscale { 0%{transform:scale(.75);opacity:0} 100%{transform:scale(1);opacity:1} }
+        .glb-img {
+          max-width: 78vw; max-height: 62vh; object-fit:contain; border-radius: 12px;
+          box-shadow: 0 0 40px #17479c1a, 0 1px 6px #0f2143cc;
+          margin-bottom: 1.2rem;
+          background: #f3f3fe;
+          border: 3px solid #fff3;
+          transition: box-shadow .24s;
+        }
+        .glb-close, .glb-prev, .glb-next {
+          position: absolute; 
+          border: none;
+          background: linear-gradient(142deg,#edf2fb 65%,#2064d688 100%);
+          color: #245; font-size: 2.4rem; border-radius: 40px;
+          width: 50px; height: 50px; box-shadow: 0 3px 20px #425b7c33; opacity: 0.93;
+          cursor: pointer; outline: none; transition: background .23s, color .18s, transform .15s;
+          display: flex; justify-content: center; align-items: center;
+        }
+        .glb-close { top: 8px; right: 13px; font-size: 2.5rem; background:#17345eeb; color: #fff;}
+        .glb-prev  { left: 14px; top: 50%; transform: translateY(-50%) scale(0.98);}
+        .glb-next  { right: 14px; top: 50%; transform: translateY(-50%) scale(0.98);}
+        .glb-prev:hover, .glb-next:hover, .glb-close:hover { background:#376dfa; color: #fff; transform: scale(1.11);}
+        .glb-caption {
+          margin-top: 6px; text-align:center; color:#fff;
+        }
+        .glb-title {
+          font-size:1.2rem; font-weight:700; color:#ffe978; display:block; margin-bottom: 3px;
+          letter-spacing:0.007em; 
+          text-shadow:0 1px 0 #232, 0 2px 12px #17346a99;
+        }
+        .glb-desc { font-size:1rem; color:#e0e7ef; }
+        @media(max-width: 750px) {
+          .glb-content{padding:16px 6vw 8px 6vw;}
+          .glb-img{max-width:92vw; max-height:48vh;}
+        }
+        /* Remove hover focus outline and glow for lightbox controls */
+        .glb-close:focus, .glb-prev:focus, .glb-next:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px #ffa 04;
+        }
+      </style>
+      <script>
+        // Gallery Fullscreen/Lightbox Functionality (no hover effects needed)
+        document.addEventListener('DOMContentLoaded', function() {
+          var galleryImages = [
+            <% for(var idx=0; idx<galleries.length; idx++) { 
+              var gal = galleries[idx]; %>
+              {
+                src: "/uploads/<%= gal.image %>",
+                title: "<%= (gal.title||gal.category||"") %>",
+                desc: "<%= gal.description ? gal.description.replace(/'/g,'&#x27;').replace(/"/g,'&quot;') : "" %>"
+              }<%= (idx < galleries.length-1) ? ',' : '' %>
+            <% } %>
+          ];
+          var curIdx = 0;
+          var lb = document.getElementById('galleryLightbox');
+          var lbImg = lb.querySelector('.glb-img');
+          var lbTitle = lb.querySelector('.glb-title');
+          var lbDesc = lb.querySelector('.glb-desc');
+          var closeBtn = lb.querySelector('.glb-close');
+          var nextBtn = lb.querySelector('.glb-next');
+          var prevBtn = lb.querySelector('.glb-prev');
+          var backdrop = lb.querySelector('.glb-backdrop');
+          // Show fullscreen image
+          function showLightbox(idx){
+            curIdx = idx;
+            var g = galleryImages[curIdx];
+            lbImg.src = g.src;
+            lbImg.alt = g.title;
+            lbTitle.textContent = g.title || "";
+            lbDesc.textContent = g.desc || "";
+            lb.style.display = 'flex';
+            lb.classList.add("showing");
+            document.body.style.overflow = 'hidden';
+          }
+          function hideLightbox(){
+            lbImg.src = "";
+            lb.classList.remove('showing');
+            lb.style.display = 'none';
+            document.body.style.overflow = '';
+          }
+          function showNext(e) {
+            if (e) e.stopPropagation();
+            curIdx = (curIdx + 1) % galleryImages.length;
+            showLightbox(curIdx);
+          }
+          function showPrev(e) {
+            if (e) e.stopPropagation();
+            curIdx = (curIdx - 1 + galleryImages.length) % galleryImages.length;
+            showLightbox(curIdx);
+          }
+          Array.prototype.slice.call(document.querySelectorAll('.gallery-fullscreen-trigger')).forEach(function(img){
+            img.addEventListener('click', function(){
+              var idx = parseInt(this.getAttribute('data-gallery-index'),10) || 0;
+              showLightbox(idx);
+            });
+          });
+          closeBtn.onclick = hideLightbox;
+          nextBtn.onclick = showNext;
+          prevBtn.onclick = showPrev;
+          backdrop.onclick = hideLightbox;
+
+          // Keyboard support
+          document.addEventListener('keydown', function(e){
+            if(lb.classList.contains('showing')){
+              if(e.key === 'ArrowRight') { showNext(); }
+              else if(e.key === 'ArrowLeft') { showPrev(); }
+              else if(e.key === 'Escape') { hideLightbox(); }
+            }
+          });
+        });
+      </script>
 
     </div>
   </div>
